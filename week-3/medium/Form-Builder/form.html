@@ -1,0 +1,88 @@
+<html>
+
+<body>
+
+    <h1 style = "display:flex;">FORM BUILDER</h1>
+
+    <div id="container">
+        <div id="fieldOp">
+            <label for="inputs" style="font-size: 16px; font-style: bold;">Select field type</label><br><br>
+            <select name = "inputs" id="inputs">
+                <option id = "textInp" value = "Text input">Text input</option>
+                <option id = "Checkbox" value = "Checkboxes">Checkboxes</option>
+                <option id = "radio" value = "Radio button">Radio button</option>
+            </select><br><br>
+        </div>
+        
+        <div id="fieldLabel">
+            <label>Field label.</label><br><br>
+            <input id = "labelInput" type="text" placeholder="Enter field label"> 
+        </div><br>
+
+        <button id="button">Add field</button><br><br>
+    </div>
+    <script>
+
+        function addField(){
+            const container = document.querySelector("#container");
+        
+            const resDiv = document.createElement("div");
+            resDiv.setAttribute("id", "resDiv");
+        
+            const option = document.querySelector("option");
+
+            // const textInp = document.querySelector("#textInp");
+            // const checkbox = document.querySelector("#checkbox");
+            // const radio = document.querySelector("#radio");
+        
+            let label = document.querySelector("#labelInput");
+
+            const selected = document.querySelector("#inputs");
+            
+            console.log(selected.value);
+            if (selected.value == "Text input"){
+                const newText = document.createElement("input");
+                newText.setAttribute("type", "text");
+
+                const newLabel = document.createElement("label");
+                newLabel.textContent = label.value;
+                resDiv.appendChild(newLabel);
+
+                newLabel.append(newText);
+            }
+        
+            if (selected.value == "Checkboxes"){
+                const newCheck = document.createElement("input");
+                newCheck.setAttribute("type", "checkbox");
+
+                const newLabel = document.createElement("label");
+                newLabel.textContent = label.value; 
+                resDiv.appendChild(newLabel);
+
+                newLabel.prepend(newCheck);
+            }
+            
+            if (selected.value == "Radio button"){
+                const newRadio = document.createElement("input");
+                newRadio.setAttribute("type", "radio");
+
+                const newLabel = document.createElement("label");
+                newLabel.textContent = label.value;
+                resDiv.appendChild(newLabel);
+
+                newLabel.prepend(newRadio);
+            }
+        
+            container.appendChild(resDiv);
+        
+        }
+        
+        const submit = document.querySelector("#button");
+        submit.addEventListener("click", () => {
+            addField();
+        });
+        
+    </script>
+
+</body>
+</html>
