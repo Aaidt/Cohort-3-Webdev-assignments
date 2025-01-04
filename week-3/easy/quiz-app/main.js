@@ -21,7 +21,7 @@ function render(){
                 
                 const checkbox = document.createElement("input");
                 checkbox.setAttribute("type", "checkbox");
-                checkbox.setAttribute("value", "key");
+                checkbox.setAttribute("value", key);
                 checkbox.setAttribute("name", `question-${index}`);
                 opDiv.appendChild(checkbox);
 
@@ -55,31 +55,44 @@ function render(){
     document.createElement("button");
     button.textContent = "Submit";
     button.addEventListener('click', () => {
-        submit();
+        res();
     });
-}
+    // questions.appendChild(submit);
 
-function submit(){
-    // alert("Quiz had ended!!!");
-    // questions.innerHTML = "";
-    // function to show the results 
-    res();
-}
+    // questions.remove(document.getElementById("button"))
+}   
 
 document.getElementById("button").addEventListener('click', () => {
     render();
 })
 
 
-function res(){
-    
-    quizData.forEach(question, index){
-        let score = 0;
-        
+function res() {
+    let score = 0;
+    let allAnswered = true;
+    quizData.forEach((element, index) => {
+
+    const selected = document.querySelector(`input[name="question-${index}"]:checked`);
+
+    if (selected){
+        if(selected.value === element.correct){
+            score += 1;
+        }
+    }else{
+        allAnswered = false;
+    }
+});
+
+    if(!allAnswered){
+        alert("answers the questions");
+        return;
     }
 
+  
+    // Show the score
     alert(`Your total score is: ${score}`);
 }
+  
 
 
 
