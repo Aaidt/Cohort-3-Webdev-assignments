@@ -88,8 +88,6 @@ function res() {
         return;
     }
 
-  
-    // Show the score
     alert(`Your total score is: ${score}`);
 }
   

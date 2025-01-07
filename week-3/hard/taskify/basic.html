@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="header" style= "text-align: center;">TO-DO LIST</h1>
+    <div>
+        <div id = 'todo' style= "text-align: center;">
+            <input id = "input" type="text" placeholder = 'Enter todos here...'>
+            <button onclick ="addTodo()">Add todo</button>
+        </div>
+
+        
+        <div id = 'list' style= "text-align: center;">
+            <!-- List of all the todos entered. -->
+        </div>
+
+
+        <div id = "todo-1" style = "display: flex; padding: 20px; text-align: center;" >
+            <h4>1. cycle</h4>
+            <button onclick = "deleteTodo(1)">Delete.</button>
+        </div>
+        <div id = "todo-2" style = "display: flex; padding: 20px; text-align: center;" >
+            <h4>2. gym</h4>
+            <button onclick = "deleteTodo(2)">Delete</button>
+        </div>
+
+    </div>
+
+  
+    <script>
+        function deleteTodo(index){
+            const element = document.querySelector("#todo-" +index); 
+            element.parentNode.removeChild(element);
+        }
+
+        function addTodo(){
+            let ctr = 1;
+            const newDivEl = document.createElement("div");
+            newDivEl.setAttribute("id",ctr);
+            const content = document.getElementById("input").value;
+            newDivEl.innerHTML = "<div>" +content+ "</div><button onclick = 'deleteList("+ctr+")'>Delete</button> "
+            ctr += 1;
+            const parentEl = document.getElementById("list").appendChild(newDivEl);
+        }
+
+        function deleteList(asd){
+            const item = document.getElementById(asd);
+            item.parentNode.removeChild(item);
+        }
+        
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+//function deleteTodo(index){
+    const element = document.getElementById('todo-' +index);
+    // element.parentNode.removeChild(element);
+    // element.innerHTML = ''
+    
+//}
+
+// const divEl = document.createElement("div");
+// divEl.innerHTML = 'hey therre...';
+// const parentEl = document.querySelector("body");
+// parentEl.appendChild(divEl);
+//let num = 0;
+//function update(){
+    //let el = document.getElementById("todo2");
+    //el.innerHTML = num;
+    //num = num + 1;
+// }
+// setInterval(update, 1000); -->
+
+
+
+<!-- <script>
+    let ctr = 3;
+    // func addTodo()
+    function addTodo(){
+        // get input
+        const input = document.getElementById('inp').value;
+        const inpVal = input.trim();
+        // alert
+        if(inpVal === ''){
+            alert('Please enter shit in the input field!!!😠😠😡');
+            return;
+        }
+        // declare new div
+        const newDiv = document.createElement('div');
+        newDiv.setAttribute('id', 'todo-'+ctr);
+        // create parentEL
+        const parentEl = document.getElementById('todos');
+        // new header with the content.
+        const newHead = document.createElement('h4');
+        newHead.textContent = ctr + '. ' + inpVal;
+        // create button 
+        const button = document.createElement('button');
+        button.textContent = 'Delete';
+        button.setAttribute('onclick', 'deleteTodo(' +ctr+ ')');
+        // append everything
+        newDiv.appendChild(newHead);
+        newDiv.appendChild(button);
+        parentEl.appendChild(newDiv);
+        // increament ctr
+        ctr++;
+        // clear input field
+        input = '';
+    }
+    // func deleteTodo()
+    function deleteTodo(index){
+        const element = document.getElementById('todo-' +index);
+        element.parentNode.removeChild(element);
+    }
+</script> -->
