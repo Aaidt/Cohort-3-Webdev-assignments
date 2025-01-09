@@ -1,17 +1,24 @@
+ // input value
+ const inpVal = parseInt(document.querySelector("input").value);
+
+
 async function fetchPokemon(){
     remove_result();
-    // input value
-    let inpVal = parseInt(document.querySelector("input").value);
-
+   
     if(isNaN(inpVal) || inpVal<1){
         alert("Please enter correct numbers.");
         return;
     }
     
+
+    // array of pokemons fetched from the api(max=100)
+    const pokemons = [];
+
     for(let i = 1; i <= inpVal; i++){
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100`);
         const data = await response.json();
-        console.log(data);
+        pokemons.push(data);
+        console.log(pokemons);
 
         // types
         const selected = document.querySelector("#inputs");
@@ -49,4 +56,10 @@ function remove_result(){
     // clean before displaying
     document.getElementById("card_info").innerHTML = "";
 }
-    
+
+
+// button eventlistener to pass the tyoe of pokemon through the fetch function.
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+    fetchPokemon(inpVal);
+})
