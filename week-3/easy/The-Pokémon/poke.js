@@ -1,8 +1,8 @@
- // input value
- const inpVal = parseInt(document.querySelector("input").value);
+/* Take the number of pokemons and the type of pokemon from the user and 
+render pokemon cards using the API provided. */
 
 
-async function fetchPokemon(){
+async function fetchPokemon(inpVal){
     remove_result();
    
     if(isNaN(inpVal) || inpVal<1){
@@ -15,18 +15,20 @@ async function fetchPokemon(){
     const pokemons = [];
 
     for(let i = 1; i <= inpVal; i++){
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
         const data = await response.json();
         pokemons.push(data);
         console.log(pokemons);
 
-        // types
+        // selected types
         const selected = document.querySelector("#inputs");
         const selected_type = selected.value;
 
-        const poke_type = data.types[0].type.name;
-        console.log(poke_type);
-
+        // checking if pokemon matches the selected type
+        const pokemon_types = data.types.map((typeInfo) => typeInfo.type.name);
+        if(!pokemon_types.includes(selected_type)){
+            continue; 
+        }
 
         // parent div for appending 
         const card_info = document.querySelector("#card_info");
@@ -38,17 +40,16 @@ async function fetchPokemon(){
         
         // display information
         const name = document.createElement("h2");
-        name.textContent = data.forms[0].name;
+        name.textContent = `Name: ${data.forms[0]?.name || "N\A"}`;
         card_info.appendChild(name);
 
         const info = document.createElement("h2");
-        info.textContent = data.moves[0].move.name;
+        info.textContent = ` Moves: ${data.moves[0]?.move.name || "N\A"}`;
         card_info.appendChild(info);
 
         const abilities = document.createElement("h2");
-        abilities.textContent = data.abilities[0].ability.name;
+        abilities.textContent = `Abilities: ${data.abilities[0]?.ability.name || "N\A"}`;
         card_info.appendChild(abilities);
-
     }
 }
 
@@ -61,5 +62,7 @@ function remove_result(){
 // button eventlistener to pass the tyoe of pokemon through the fetch function.
 const button = document.querySelector("button");
 button.addEventListener("click", () => {
+    // input value
+    const inpVal = parseInt(document.querySelector("input").value);
     fetchPokemon(inpVal);
-})
+});
