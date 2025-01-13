@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
+
+<style>
+
+</style>
+
 <body>
-    <h1 id="header" style= "text-align: center;">TO-DO LIST</h1>
+    <h1 id="header" style= "text-align: center;">TO-DO APP</h1>
     <div>
         <div id = 'todo' style= "text-align: center;">
-            <input id = "input" type="text" placeholder = 'Enter todos here...'>
-            <button onclick ="addTodo()">Add todo</button>
+            <input id = "input" type="text" placeholder = 'Enter tasks here...'>
+            <button onclick ="addTask()">Add task</button>
         </div>
 
         
@@ -20,40 +24,19 @@
         </div>
 
 
-        <div id = "todo-1" style = "display: flex; padding: 20px; text-align: center;" >
+        <!-- <div id = "todo-1" style = "padding: 20px; text-align: center;" >
             <h4>1. cycle</h4>
-            <button onclick = "deleteTodo(1)">Delete.</button>
+            <button onclick = "deleteTask(1)">Delete.</button>
         </div>
-        <div id = "todo-2" style = "display: flex; padding: 20px; text-align: center;" >
+        <div id = "todo-2" style = "padding: 20px; text-align: center;" >
             <h4>2. gym</h4>
-            <button onclick = "deleteTodo(2)">Delete</button>
-        </div>
+            <button onclick = "deleteTask(2)">Delete</button>
+        </div> -->
 
     </div>
 
   
-    <script>
-        function deleteTodo(index){
-            const element = document.querySelector("#todo-" +index); 
-            element.parentNode.removeChild(element);
-        }
-
-        function addTodo(){
-            let ctr = 1;
-            const newDivEl = document.createElement("div");
-            newDivEl.setAttribute("id",ctr);
-            const content = document.getElementById("input").value;
-            newDivEl.innerHTML = "<div>" +content+ "</div><button onclick = 'deleteList("+ctr+")'>Delete</button> "
-            ctr += 1;
-            const parentEl = document.getElementById("list").appendChild(newDivEl);
-        }
-
-        function deleteList(asd){
-            const item = document.getElementById(asd);
-            item.parentNode.removeChild(item);
-        }
-        
-    </script>
+    <script src="todo.js">    </script>
 </body>
 </html>
 

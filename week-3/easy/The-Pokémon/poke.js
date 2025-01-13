@@ -18,7 +18,6 @@ async function fetchPokemon(inpVal){
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
         const data = await response.json();
         pokemons.push(data);
-        console.log(pokemons);
 
         // selected types
         const selected = document.querySelector("#inputs");
@@ -51,6 +50,7 @@ async function fetchPokemon(inpVal){
         abilities.textContent = `Abilities: ${data.abilities[0]?.ability.name || "N\A"}`;
         card_info.appendChild(abilities);
     }
+    console.log(pokemons);
 }
 
 function remove_result(){
