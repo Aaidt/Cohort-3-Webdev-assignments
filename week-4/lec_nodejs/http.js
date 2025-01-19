@@ -1,8 +1,9 @@
 const express = require("express");
 
 const app = express();
+const port = 3000;
 
-var users=[{
+const users=[{
     name: 'John',
     kidneys: [{
         healthy: false
@@ -35,7 +36,7 @@ app.post("/", function (req, res) {
     })
     res.json({
         msg: "done!"
-    })
+})
 })
 
 app.put("/", function (req, res) {
@@ -59,15 +60,15 @@ function checkForUnhealthyKidneys(){
 app.delete("/", function (req, res) {
     if(checkForUnhealthyKidneys()){
         const newKidneys = [];
-    for(let i = 0; i< users[0].kidneys.length; i++){
-        if(users[0].kidneys[i].healthy){
-            newKidneys.push({
-                healthy: true
-            });
+        for(let i = 0; i< users[0].kidneys.length; i++){
+            if(users[0].kidneys[i].healthy){
+                newKidneys.push({
+                    healthy: true
+                });
+            }
         }
-    }
-    users[0].kidneys = newKidneys;
-    res.json({msg: "done."});
+        users[0].kidneys = newKidneys;
+        res.json({msg: "done."});
     }else{
         res.status(411).json({
             msg: "you have no unhealthy kidneys."
@@ -76,6 +77,9 @@ app.delete("/", function (req, res) {
 })
 
 
-    
-
-app.listen(3000);
+app.listen(port, function(err) {
+    if(err){
+        console.log(err);
+    }
+    console.log("Server listening on port: ", port);
+});
