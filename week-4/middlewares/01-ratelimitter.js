@@ -17,21 +17,29 @@ setInterval(() => {
     numberOfRequestsForUser = {};
 }, 1000)
 
-const users = [{
-  name: "John"
-}]
+app.use(function(req, res, next) {
+  const userId = req.headers["user-id"];
+  if(numberOfRequestsForUser[userId]){ 
+    numberOfRequestsForUser[userId] += 1;
+    // Initialising userId if its the first request.
+    if(numberOfRequestsForUser[userId] > 5){
+      res.status(404).send("no more space.");
+    }
+    if(!numberOfRequestsForUser[userId]){
+      numberOfRequestsForUser[userId] = 0;
+    }else{
+      next();
+    }
+  }
+
+})
+
 
 app.get('/user', function(req, res) {
-  res.status(200).json({ users });
+  res.status(200).json({ name: 'john' });
 });
 
-app.use(express.json());
-
 app.post('/user', function(req, res) {
-  const nameOfUser = req.body.nameOfUser
-  users.push({
-    name: nameOfUser
-  })
   res.status(200).json({ msg: 'created dummy user' });
 });
 
@@ -43,4 +51,5 @@ app.listen(port, function(err) {
   }
   console.log("Server is listening on port: ", port)
 });
+
 module.exports = app;
