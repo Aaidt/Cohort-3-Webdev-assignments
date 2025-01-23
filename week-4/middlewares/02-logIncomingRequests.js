@@ -4,9 +4,14 @@ const express = require('express');
 const app = express();
 
 function logRequests(req, res, next) {
-    // write the logic for request log here
-}
+    const currentDateTime = new Date().toISOString(); 
+    const method = req.method;
+    const url = req.originalUrl;
 
+    console.log(`${method} ${url} - ${currentDateTime}`);
+
+    next(); 
+}
 app.use(logRequests);
 
 app.get('/', (req, res) => {
