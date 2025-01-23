@@ -2,7 +2,6 @@
 
 const express = require('express');
 const app = express();
-const port = 3000;
 
 // Your task is to create a global middleware (app.use) which will
 // rate limit the requests from a user to only 5 request per second
@@ -18,21 +17,17 @@ setInterval(() => {
 }, 1000)
 
 app.use(function(req, res, next) {
-  const userId = req.headers["user-id"];
-  if(numberOfRequestsForUser[userId]){ 
-    numberOfRequestsForUser[userId] += 1;
-    // Initialising userId if its the first request.
-    if(numberOfRequestsForUser[userId] > 5){
-      res.status(404).send("no more space.");
-    }
-    if(!numberOfRequestsForUser[userId]){
-      numberOfRequestsForUser[userId] = 0;
-    }else{
-      next();
-    }
+  let userId = req.headers["user-id"];
+  if(!numberOfRequestsForUser[userId]){ 
+    numberOfRequestsForUser[userId] = 0;
   }
-
-})
+  numberOfRequestsForUser[userId] += 1;
+  if(numberOfRequestsForUser[userId] > 5){
+    res.status(404).send("no more space.");
+  }else{
+    next(); 
+  }
+  })
 
 
 app.get('/user', function(req, res) {
@@ -45,11 +40,6 @@ app.post('/user', function(req, res) {
 
 
 
-app.listen(port, function(err) {
-  if(err){
-    console.log(err);
-  }
-  console.log("Server is listening on port: ", port)
-});
+app.listen(3000);
 
 module.exports = app;
