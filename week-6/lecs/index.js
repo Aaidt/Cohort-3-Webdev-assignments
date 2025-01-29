@@ -13,7 +13,7 @@ function generateRandomToken(){
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
       ];
 
-    let token = "";
+    let token = ""; 
     for(let i = 0; i < 32; i++){
         token += options[Math.floor(Math.random() * options.length)];
     } 
@@ -37,6 +37,17 @@ app.post("/signup", function(req, res) {
 });
 
 app.post("/signin", function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    let foundUser = null;
+    for(let i = 0; i < users.length; i++){
+        if(users[i].username == username && users[i].password == password){
+            foundUser = users[i];
+        }
+    }
+    // const foundUser = users.find((u) => u.username == username && u.password == password);
+    
 
 });
 
