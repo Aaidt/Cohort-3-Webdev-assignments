@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+const jwt = require('jsonwebtoken');
+const JWT_SECRET =  "aaditdoesnotknowwhokiarais";
 const users = [];
 
 // function generateRandomToken(){
@@ -48,8 +50,12 @@ app.post("/signin", function(req, res) {
     }
     // const foundUser = users.find((user) => user.username == username && user.password == password);
     if(foundUser){
-        const token = generateRandomToken();
-        foundUser.token = token;
+        // const token = generateRandomToken();
+        const token = jwt.sign({
+            username: username
+        }, JWT_SECRET);
+        // foundUser.token = token;  
+        // no need to save jwt in db as it is a stateless token ie. it stores the username in the tokens encoding itself, so it doesnt need to be kept in the db with the respective user.
         res.send({
             token: token
         });
@@ -64,7 +70,11 @@ app.post("/signin", function(req, res) {
 
 app.get("/me", function(req, res) {
     const token = req.headers.token;
-    let foundUsers = users.find(user => user.token == token);
+    const decodedInformation = jwt.verify(token, JWT_SECRET);
+    const username = decodedInformation.username;
+    
+    let foundUsers = users.find(user => user.username == username);
+
     if(foundUsers){
         res.send({
             username: foundUsers.username,
