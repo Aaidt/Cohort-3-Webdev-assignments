@@ -79,6 +79,7 @@ app.get("/me", function(req, res) {
         res.send({
             username: foundUsers.username,
             password: foundUsers.password
+            
         });
     }else{
         res.status(403).send({
