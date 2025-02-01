@@ -3,7 +3,7 @@ const app = express();
 app.use(express.json());
 
 const jwt = require('jsonwebtoken');
-const JWT_SECRET =  "aaditdoesnotknowwhokiarais";
+const JWT_SECRET =  "aadidoesnotknowwhokiarais";
 const users = [];
 
 // function generateRandomToken(){
@@ -22,6 +22,33 @@ const users = [];
 //     return token;
 // }
 
+function auth(req, res, next){  
+    const token = req.headers.token;
+    if(token){
+        jwt.verify(token, JWT_SECRET, (err, decoded) => {
+            if(err){
+                res.status(403).send({
+                    message: "Unauthorized"
+                });
+            }else{
+                req.username = decoded.username;
+                next();
+            }
+            
+        })
+    }else{
+        res.status(403).send({
+            message: "You're not logged in."
+        });
+    }
+}
+
+function logger(req, res, next){
+    console.log(`${req.method} request just came in.`);
+    next();
+}
+
+app.use(logger);
 
 app.post("/signup", function(req, res) {
     const username = req.body.username;
@@ -38,7 +65,7 @@ app.post("/signup", function(req, res) {
     console.log(users);
 });
 
-app.post("/signin", function(req, res) {
+app.post("/signin",  function(req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -68,25 +95,18 @@ app.post("/signin", function(req, res) {
     console.log(users);
 });
 
-app.get("/me", function(req, res) {
-    const token = req.headers.token;
-    const decodedInformation = jwt.verify(token, JWT_SECRET);
-    const username = decodedInformation.username;
-    
-    let foundUsers = users.find(user => user.username == username);
+app.use(auth);
 
-    if(foundUsers){
-        res.send({
-            username: foundUsers.username,
-            password: foundUsers.password
+app.get("/me", function(req, res) {
+    const thisUser = req.username;
+    let foundUser = users.find((user) => user.username === thisUser);
+
+        res.json({
+            username: foundUser.username,
+            password: foundUser.password
             
         });
-    }else{
-        res.status(403).send({
-            message: "Invalid token."
-    });
-    }
-})
+});
 
 
 app.listen(3000, () => {
