@@ -22,26 +22,9 @@ const users = [];
 //     return token;
 // }
 
-function auth(req, res, next){  
-    const token = req.headers.token;
-    if(token){
-        jwt.verify(token, JWT_SECRET, (err, decoded) => {
-            if(err){
-                res.status(403).send({
-                    message: "Unauthorized"
-                });
-            }else{
-                req.username = decoded.username;
-                next();
-            }
-            
-        })
-    }else{
-        res.status(403).send({
-            message: "You're not logged in."
-        });
-    }
-}
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/publicF/index.html");
+})
 
 function logger(req, res, next){
     console.log(`${req.method} request just came in.`);
@@ -69,15 +52,16 @@ app.post("/signin",  function(req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
-    let foundUser = null;
-    for(let i = 0; i < users.length; i++){
-        if(users[i].username == username && users[i].password == password){
-            foundUser = users[i];
-        }
-    }
-    // const foundUser = users.find((user) => user.username == username && user.password == password);
-    if(foundUser){
+    // let foundUser = null;
+    // for(let i = 0; i < users.length; i++){
+    //     if(users[i].username == username && users[i].password == password){
+    //         foundUser = users[i];
+    //     }
+    // }
+    let foundUser = users.find(user => user.username == username && user.password == password);
+    if(foundUser){  
         // const token = generateRandomToken();
+        console.log(`Signing the token witht the username: ${username}`);
         const token = jwt.sign({
             username: username
         }, JWT_SECRET);
@@ -95,17 +79,44 @@ app.post("/signin",  function(req, res) {
     console.log(users);
 });
 
+function auth(req, res, next){  
+    const token = req.headers.token;
+    if(token){
+        jwt.verify(token, JWT_SECRET, (err, decoded) => {
+            if(err){
+                res.status(403).send({
+                    message: "Unauthorized"
+                });
+            }else{
+                req.username = decoded.username;
+                next();
+            }
+        });
+    }else{
+        res.status(403).send({
+            message: "You're not logged in."
+        });
+    }
+}
+
 app.use(auth);
 
 app.get("/me", function(req, res) {
     const thisUser = req.username;
+    console.log(`${req.username} is the username`);
     let foundUser = users.find((user) => user.username === thisUser);
 
+    if(foundUser){
         res.json({
             username: foundUser.username,
             password: foundUser.password
             
         });
+    }else{
+        res.status(404).send({
+            message: "There's no user with those credentials."
+        });
+    }
 });
 
 
