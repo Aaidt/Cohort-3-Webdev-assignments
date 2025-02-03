@@ -1,4 +1,4 @@
-let todos = []; // in memory space
+let todos = ["todos"]; // in memory space
 let ID = 0;
 
 export async function getAllTodo (req, res, next){

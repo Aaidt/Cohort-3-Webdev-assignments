@@ -1,13 +1,16 @@
-const API_URL = 'http://localhost:3001/todos';
+// const API_URL = 'http://localhost:3001/todos';
 
 // Fetch existing todos when the page loads
 document.addEventListener('DOMContentLoaded', () => {
   // fetch todos
+  
 });
 
 // Fetch todos from backend
-function fetchTodos() {
+async function fetchTodos() {
     //  write here
+    const response = await axios.get("http://localhost:3001");
+    console.log(response.json);
 }
 
 // Add a new todo to the DOM
