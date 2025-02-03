@@ -61,7 +61,7 @@ app.post("/signin",  function(req, res) {
     let foundUser = users.find(user => user.username == username && user.password == password);
     if(foundUser){  
         // const token = generateRandomToken();
-        console.log(`Signing the token witht the username: ${username}`);
+        console.log(`Signing the token with the username: ${username}`);
         const token = jwt.sign({
             username: username
         }, JWT_SECRET);
@@ -103,7 +103,7 @@ app.use(auth);
 
 app.get("/me", function(req, res) {
     const thisUser = req.username;
-    console.log(`${req.username} is the username`);
+    // console.log(`${req.username} is the username`);
     let foundUser = users.find((user) => user.username === thisUser);
 
     if(foundUser){
