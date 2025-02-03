@@ -1,42 +1,55 @@
-
-
 body {
-  /*  write here */
+    background: linear-gradient(to right, rgb(93, 135, 197), rgb(60, 6, 65));
+    justify-items: center;  
   }
     
   .container {
-  /*  write here */
+    background: linear-gradient(to left, rgb(59, 110, 172), rgb(99, 16, 61));
+    border: solid 3px black; 
+    padding: 10px;  
+    height: 400px;
+    width: 400px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    justify-items: center;
+    border-radius: 15px; 
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.6);
   }
     
   h1 {
-  /*  write here */
+    
   }
     
   .input-container {
-  /*  write here */
+    padding: 10px;
   }
     
   #todo-input {
-  /*  write here */
+    margin: 10px;
+    border: solid 2px black;
+    border-radius: 6px;
   }
     
   #add-todo-btn {
-  /*  write here */
+    margin: 10px;
+    /* justify-content: center; */
+    border: solid 2px black;
+    border-radius: 6px;
   }
     
   #todo-list {
-   /*  write here */
+    padding: 10px;
   }
     
   #todo-list li {
-  /*  write here */
+    padding: 10px;
   }
     
   #todo-list li.completed {
-  /*  write here */
+    padding: 10px;
   }
     
   button.delete-btn {
-  /*  write here */
+    
   }
     
