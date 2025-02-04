@@ -37,6 +37,16 @@ body {
     border-radius: 6px;
   }
     
+  #add-todo-btn:hover {
+    background: linear-gradient(to left, rgb(137, 55, 170), rgb(99, 16, 61));
+  }
+
+  #add-todo-btn:active {
+    /* background-color: blue; */
+    box-shadow: 0 2px black;
+    transform: translateY(4px);
+  }
+
   #todo-list {
     padding: 10px;
   }

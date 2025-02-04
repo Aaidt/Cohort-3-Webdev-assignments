@@ -1,9 +1,9 @@
-let todos = ["todos"]; // in memory space
+let todos = []; // in memory space
 let ID = 0;
 
 export async function getAllTodo (req, res, next){
     res.send({
-        todos
+        todo: todos
     });
 }
 
@@ -35,10 +35,6 @@ export async function updateTodo (req, res, next){
     }
 }
 
-// export async function deleteTodo (req, res, next){
-    
-// }
-
 export async function deleteTodoById (req, res, next){
     try{
         const id = req.params.id;
@@ -51,7 +47,3 @@ export async function deleteTodoById (req, res, next){
     }
 
 }
-
-// export async function searchTodo(req, res, next){
-    
-// }
