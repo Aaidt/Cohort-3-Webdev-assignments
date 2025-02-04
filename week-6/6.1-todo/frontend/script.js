@@ -9,22 +9,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fetch todos from backend
 async function fetchTodos() {
-    //  write here
     const response = await axios.get(API_URL);
-    const task = JSON.stringify(response.data);
+    const task = await response.data;
 
+    let todoToAppend = task.forEach(task => task.todo);
     const todos = document.getElementById("todo-list");
-    todos.textContent = task;
+    todos.textContent = todoToAppend;
     
-    console.log(task);
+    // console.log(task);
 }
 
 // Add a new todo to the DOM
 async function addTodoToDOM() {
-    //  write here
-    const todo = document.getElementById("todo-input").value;
-    const todos = await axios.post(API_URL, {
-        todos: todo
+    
+    const taskValue = document.getElementById("todo-input").value;
+    await axios.post(API_URL, {
+        todo: taskValue
     });
 }
 

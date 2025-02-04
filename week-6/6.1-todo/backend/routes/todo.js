@@ -2,9 +2,7 @@ let todos = []; // in memory space
 let ID = 0;
 
 export async function getAllTodo (req, res, next){
-    res.send({
-        todo: todos
-    });
+    res.send(todos);
 }
 
 export async function createTodo (req, res, next){

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 
 
 import { getAllTodo, createTodo, updateTodo, deleteTodoById } from './routes/todo.js';
@@ -41,6 +41,6 @@ app.listen(PORT, (err) => {
   if(err){
     console.log(err);
   }else{
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on the port: ${PORT}`);
   }
 });

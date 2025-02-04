@@ -38,7 +38,7 @@ body {
   }
     
   #add-todo-btn:hover {
-    background: linear-gradient(to left, rgb(137, 55, 170), rgb(99, 16, 61));
+    background: linear-gradient(to left, rgb(99, 129, 141), rgb(52, 91, 146));
   }
 
   #add-todo-btn:active {
