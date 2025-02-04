@@ -1,10 +1,10 @@
 body {
-    background: linear-gradient(to right, rgb(93, 135, 197), rgb(60, 6, 65));
+    background: linear-gradient(to right, rgb(171, 182, 197), rgb(97, 141, 143));
     justify-items: center;  
   }
     
   .container {
-    background: linear-gradient(to left, rgb(59, 110, 172), rgb(99, 16, 61));
+    background: linear-gradient(to left, rgb(155, 168, 180), rgb(93, 143, 151));
     border: solid 3px black; 
     padding: 10px;  
     height: 400px;
