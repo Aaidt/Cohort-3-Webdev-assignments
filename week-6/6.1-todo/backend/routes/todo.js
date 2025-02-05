@@ -2,7 +2,9 @@ let todos = []; // in memory space
 let ID = 0;
 
 export async function getAllTodo (req, res, next){
-    res.send(todos);
+    res.json({
+        todos
+    });
 }
 
 export async function createTodo (req, res, next){
@@ -13,7 +15,7 @@ export async function createTodo (req, res, next){
         id: ID,
         todo: todo
     });
-    res.send({
+    res.json({
         message: "Successfully added a new todo."
     });
 }
@@ -27,7 +29,7 @@ export async function updateTodo (req, res, next){
     if(foundTodo){
         foundTodo.todo = updatedTodo;
     }else{
-        res.status(403).send({
+        res.status(403).json({
             message: "Invalid ID."
         });
     }
@@ -37,7 +39,7 @@ export async function deleteTodoById (req, res, next){
     try{
         const id = req.params.id;
         todos = todos.filter(todo => todo.id !== id);
-        res.send({
+        res.json({
             message: "todo successfully deleted."
         });
     }catch(error){

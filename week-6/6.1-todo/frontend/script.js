@@ -7,21 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchTodos();
 });
 
+const todoList = document.getElementById("todo-list");
+
 // Fetch todos from backend
 async function fetchTodos() {
-    const response = await axios.get(API_URL);
-    const task = await response.data;
 
-    let todoToAppend = task.forEach(task => task.todo);
-    const todos = document.getElementById("todo-list");
-    todos.textContent = todoToAppend;
-    
-    // console.log(task);
+    try{
+        const response = await axios.get(API_URL);
+        const task = await response.todos;
+        console.log(task);
+
+        todoList.innerHTML = "";
+        const todoContent = task.map((todo) => todo.todo);
+        const todoItem = document.createElement("li");
+        todoItem.textContent = todoContent;
+        todoList.appendChild(todoItem);
+    }catch(error){
+        console.log(error);
+    }
 }
-
 // Add a new todo to the DOM
 async function addTodoToDOM() {
-    
     const taskValue = document.getElementById("todo-input").value;
     await axios.post(API_URL, {
         todo: taskValue
