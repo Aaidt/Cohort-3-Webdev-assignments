@@ -3,7 +3,7 @@ body {
     justify-items: center;  
   }
     
-  .container {
+  #container {
     background: linear-gradient(to left, rgb(155, 168, 180), rgb(93, 143, 151));
     border: solid 3px black; 
     padding: 10px;  
@@ -14,13 +14,14 @@ body {
     justify-items: center;
     border-radius: 15px; 
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.6);
+    /* overflow: hidden;  */
   }
     
   h1 {
     
   }
     
-  .input-container {
+  #input-container {
     padding: 10px;
   }
     
@@ -48,14 +49,25 @@ body {
   }
 
   #todo-list {
-    padding: 10px;
+    padding: 0px;
+    /* box-shadow: 0 2px black;  */
+    /* border: solid 3px black;
+    border-radius: 10px; */
   }
     
-  #todo-list li {
-    padding: 10px;
+  #todo-list p {
+    display: flex;
+    background: linear-gradient(rgb(77, 77, 163), rgb(84, 120, 160));
+    padding: 5px;
+    border: solid 2px black;
+    margin-right: 150px;
+    margin-left: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
+    border-radius: 10px;
   }
     
-  #todo-list li.completed {
+  #todo-list p.completed {
     padding: 10px;
   }
     

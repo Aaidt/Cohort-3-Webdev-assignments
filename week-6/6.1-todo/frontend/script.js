@@ -18,10 +18,12 @@ async function fetchTodos() {
 
         todoList.innerHTML = "";
         fetchedTask.forEach(todo => {
-            let todoItem = document.createElement("li");
+            let todoItem = document.createElement("p");
             todoItem.textContent = todo.task;
             todoList.appendChild(todoItem);
         });
+        document.getElementById("container").appendChild(todoList);
+        
     }catch(error){
         console.log(error);
     }
