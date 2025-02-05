@@ -13,7 +13,7 @@ export async function createTodo (req, res, next){
     // point to a null todo, instead of the id just being assigned to the next todo. 
     todos.push({
         id: ID,
-        todo: todo
+        task: todo
     });
     res.json({
         message: "Successfully added a new todo."
@@ -24,10 +24,10 @@ export async function updateTodo (req, res, next){
     const id = req.params.id;
     const updatedTodo = req.body.updatedTodo; // will recieve this through the FE
 
-    let foundTodo = todos.find(todo => todo.id === id);
+    let foundTodo = todos.find(t => t.id === id);
 
     if(foundTodo){
-        foundTodo.todo = updatedTodo;
+        foundTodo.task = updatedTodo;
     }else{
         res.status(403).json({
             message: "Invalid ID."
@@ -38,7 +38,7 @@ export async function updateTodo (req, res, next){
 export async function deleteTodoById (req, res, next){
     try{
         const id = req.params.id;
-        todos = todos.filter(todo => todo.id !== id);
+        todos = todos.filter(t => t.id !== id);
         res.json({
             message: "todo successfully deleted."
         });

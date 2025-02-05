@@ -11,21 +11,22 @@ const todoList = document.getElementById("todo-list");
 
 // Fetch todos from backend
 async function fetchTodos() {
-
     try{
         const response = await axios.get(API_URL);
-        const task = await response.todos;
-        console.log(task);
+        const fetchedTask = await response.data.todos;
+        console.log(fetchedTask);
 
         todoList.innerHTML = "";
-        const todoContent = task.map((todo) => todo.todo);
-        const todoItem = document.createElement("li");
-        todoItem.textContent = todoContent;
-        todoList.appendChild(todoItem);
+        fetchedTask.forEach(todo => {
+            let todoItem = document.createElement("li");
+            todoItem.textContent = todo.task;
+            todoList.appendChild(todoItem);
+        });
     }catch(error){
         console.log(error);
     }
 }
+
 // Add a new todo to the DOM
 async function addTodoToDOM() {
     const taskValue = document.getElementById("todo-input").value;
