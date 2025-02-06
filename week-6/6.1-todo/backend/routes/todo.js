@@ -22,7 +22,7 @@ export async function createTodo (req, res, next){
 
 export async function updateTodo (req, res, next){
     const id = req.params.id;
-    const updatedTodo = req.body.updatedTodo; // will recieve this through the FE
+    const updatedTodo = req.body.updatedTodo; 
 
     let foundTodo = todos.find(t => t.id === id);
 

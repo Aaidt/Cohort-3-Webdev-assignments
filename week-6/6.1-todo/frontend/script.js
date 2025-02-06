@@ -3,7 +3,6 @@ const API_URL = 'http://localhost:3001/todos';
 
 // Fetch existing todos when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-  // fetch todos
   fetchTodos();
 });
 
@@ -39,16 +38,20 @@ async function addTodoToDOM() {
 
 // Add a new todo
 document.getElementById('add-todo-btn').addEventListener('click', () => {
-    //  write here
     addTodoToDOM();
 });
 
 // Toggle todo completion
 function toggleTodo(id, completed) {
-//    write here
 }
 
 // Delete a todo
 function deleteTodo(id) {
-    // write here  
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("id", "deleteTodo");
+    todoList.appendChild(delete_button);
 }
+
+deleteButton.addEventListener("click", () => {
+    deleteTodo()
+})

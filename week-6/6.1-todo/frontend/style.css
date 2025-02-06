@@ -57,11 +57,12 @@ body {
     
   #todo-list p {
     display: flex;
+    justify-content: center;
     background: linear-gradient(rgb(77, 77, 163), rgb(84, 120, 160));
     padding: 5px;
     border: solid 2px black;
-    margin-right: 150px;
-    margin-left: 150px;
+    /* margin-right: 150px;
+    margin-left: 150px; */  
     padding-left: 150px;
     padding-right: 150px;
     border-radius: 10px;
