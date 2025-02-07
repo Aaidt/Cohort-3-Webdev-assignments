@@ -15,6 +15,8 @@ async function fetchTodos() {
         const fetchedTask = await response.data.todos;
         console.log(fetchedTask);
 
+
+
         todoList.innerHTML = "";
         fetchedTask.forEach(todo => {
             let todoItem = document.createElement("p");
@@ -46,12 +48,61 @@ function toggleTodo(id, completed) {
 }
 
 // Delete a todo
-function deleteTodo(id) {
-    const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("id", "deleteTodo");
-    todoList.appendChild(delete_button);
+async function deleteTodo(id) {
+
+    try{
+        const deleteButton = document.createElement("button");
+        deleteButton.setAttribute("id", "deleteButton");
+        todoList.appendChild(deleteButton);
+
+        await axios.delete()
+    }
 }
 
-deleteButton.addEventListener("click", () => {
-    deleteTodo()
+document.getElementById("deleteButton").addEventListener("click", () => {
+    deleteTodo();
 })
+
+
+
+
+// async function deleteTodo(id) {
+//     try {
+//         await axios.delete(`${API_URL}/${id}`);
+//         console.log(`Todo with ID ${id} deleted successfully.`);
+        
+//         // Re-fetch todos after deletion
+//         fetchTodos();
+//     } catch (error) {
+//         console.error("Error deleting todo:", error);
+//     }
+// }
+
+
+// async function fetchTodos() {
+//     try {
+//         const response = await axios.get(API_URL);
+//         const fetchedTodos = response.data.todos;
+//         console.log(fetchedTodos);
+
+//         todoList.innerHTML = "";
+//         fetchedTodos.forEach(todo => {
+//             let todoItem = document.createElement("p");
+//             todoItem.textContent = todo.task;
+
+//             let deleteButton = document.createElement("button");
+//             deleteButton.textContent = "Delete";
+//             deleteButton.addEventListener("click", () => deleteTodo(todo.id));
+
+//             let todoContainer = document.createElement("div");
+//             todoContainer.appendChild(todoItem);
+//             todoContainer.appendChild(deleteButton);
+
+//             todoList.appendChild(todoContainer);
+//         });
+//         document.getElementById("container").appendChild(todoList);
+        
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
