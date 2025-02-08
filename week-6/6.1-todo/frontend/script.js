@@ -57,6 +57,8 @@ async function deleteTodo(id) {
         todoList.appendChild(deleteButton);
 
         await axios.delete()
+    }catch(error){
+        console.log(error);
     }
 }
 
