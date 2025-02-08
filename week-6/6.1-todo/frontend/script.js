@@ -48,6 +48,7 @@ function toggleTodo(id, completed) {
 }
 
 // Delete a todo
+
 async function deleteTodo(id) {
 
     try{
@@ -61,7 +62,7 @@ async function deleteTodo(id) {
 
 document.getElementById("deleteButton").addEventListener("click", () => {
     deleteTodo();
-})
+});
 
 
 
