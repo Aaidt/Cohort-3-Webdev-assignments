@@ -42,7 +42,6 @@ async function addTodoToDOM() {
 document.getElementById('add-todo-btn').addEventListener('click', () => {
     addTodoToDOM();
 });
-
 // Toggle todo completion
 function toggleTodo(id, completed) {
 }
