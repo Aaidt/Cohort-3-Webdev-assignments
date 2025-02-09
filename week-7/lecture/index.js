@@ -71,12 +71,12 @@ app.use(auth);
 
 app.post("/todo", async function(req, res) {
     const userId = req.userId;
-    const task = req.body.title;
+    const title  = req.body.title;
     const done = req.body.done;
 
     const todo = await TodoModel.create({
         userId,
-        task,
+        title,
         done        
     });
 

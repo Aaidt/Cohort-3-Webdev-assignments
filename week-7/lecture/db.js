@@ -9,9 +9,9 @@ const User = new Schema({
 })
 
 const Todos = new Schema({
-    task: String,
-    done: Boolean,
-    userId: ObjectId
+    userId: ObjectId,
+    title: String,
+    done: Boolean
 })
 
 
