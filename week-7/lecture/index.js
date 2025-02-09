@@ -10,26 +10,31 @@ mongoose.connect("mongodb+srv://aadit:1pUrfhF2ocP7CjC8@cluster0.66cyf.mongodb.ne
 
 const bcrypt = require("bcrypt");
 
+const { z } = require("zod");
+
 app.use(express.json());
 
 app.post("/signup", async function(req, res) {
+    const requiredBody = z.object({
+        email: z.string().min(5).max(50).email(),
+        password: z.string().min(5).max(50),
+        name: z.string().min(5).max(50)
+    });
+
+    const parsedData = requiredBody.parse(req.body);
+    const parsedDataWithSuccess = requiredBody.safeParse(req.body);
+
+    if(!parsedDataWithSuccess.success){
+        res.json({
+            message: "Incorrect format.",
+            error: parsedDataWithSuccess.error
+        });
+        return
+    }
+
     const email = req.body.email;
     const password = req.body.password;
     const name = req.body.name;
-
-    if(typeof email !== "string" || email.length < 5 || !email.includes('@')){
-        res.json({
-            message: "Invalid Email Id."
-        });
-        return;
-    }
-
-    if(typeof password !== "string" || password.length < 5 ){
-        res.json({
-            message: "Invalid Email Id."
-        });
-        return;
-    }
 
     try{
     const hashedPassword = await bcrypt.hash(password, 5);
