@@ -21,12 +21,14 @@ app.post("/signup", async function(req, res) {
         res.json({
             message: "Invalid Email Id."
         });
+        return;
     }
 
     if(typeof password !== "string" || password.length < 5 ){
         res.json({
             message: "Invalid Email Id."
         });
+        return;
     }
 
     try{
