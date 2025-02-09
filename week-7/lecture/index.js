@@ -17,7 +17,18 @@ app.post("/signup", async function(req, res) {
     const password = req.body.password;
     const name = req.body.name;
 
-    let errorThrown = false;
+    if(typeof email !== "string" || email.length < 5 || !email.includes('@')){
+        res.json({
+            message: "Invalid Email Id."
+        });
+    }
+
+    if(typeof password !== "string" || password.length < 5 ){
+        res.json({
+            message: "Invalid Email Id."
+        });
+    }
+
     try{
     const hashedPassword = await bcrypt.hash(password, 5);
     console.log(hashedPassword);
@@ -29,16 +40,12 @@ app.post("/signup", async function(req, res) {
     });
     }catch(error){
         console.log(error);
-        res.json({
-            message: "User already exists."
-        });
-        errorThrown = true;
     }
-    if(!errorThrown){
-        res.json({
-            message: "You have successfully signed up."
-        });
-    }
+    
+    res.json({
+        message: "You have successfully signed up."
+    });
+
 });
 
 
