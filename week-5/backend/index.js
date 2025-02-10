@@ -1,10 +1,11 @@
 // The backend will be deployed from here. 
-
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const { auth } = require("./middleware/user"); 
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(auth);
 
