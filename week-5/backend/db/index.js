@@ -1,1 +1,2 @@
-//  start writing from here
+// define the db schema here
+
