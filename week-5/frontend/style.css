@@ -1,1 +1,77 @@
-  /* start from here */
+body {
+  background: linear-gradient(to right, rgb(171, 182, 197), rgb(97, 141, 143));
+  justify-items: center;  
+}
+  
+#container {
+  background: linear-gradient(to left, rgb(155, 168, 180), rgb(93, 143, 151));
+  border: solid 3px black; 
+  padding: 10px;  
+  height: 400px;
+  width: 400px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  justify-items: center;
+  border-radius: 15px; 
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.6);
+  /* overflow: hidden;  */
+}
+  
+h1 {
+  
+}
+  
+#input-container {
+  padding: 10px;
+}
+  
+#todo-input {
+  margin: 10px;
+  border: solid 2px black;
+  border-radius: 6px;
+}
+  
+#add-todo-btn {
+  margin: 10px;
+  /* justify-content: center; */
+  border: solid 2px black;
+  border-radius: 6px;
+}
+  
+#add-todo-btn:hover {
+  background: linear-gradient(to left, rgb(99, 129, 141), rgb(52, 91, 146));
+}
+
+#add-todo-btn:active {
+  /* background-color: blue; */
+  box-shadow: 0 2px black;
+  transform: translateY(4px);
+}
+
+#todo-list {
+  padding: 0px;
+  /* box-shadow: 0 2px black;  */
+  /* border: solid 3px black;
+  border-radius: 10px; */
+}
+  
+#todo-list p {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(rgb(77, 77, 163), rgb(84, 120, 160));
+  padding: 5px;
+  border: solid 2px black;
+  /* margin-right: 150px;
+  margin-left: 150px; */  
+  padding-left: 150px;
+  padding-right: 150px;
+  border-radius: 10px;
+}
+  
+#todo-list p.completed {
+  padding: 10px;
+}
+  
+button.delete-btn {
+  
+}
