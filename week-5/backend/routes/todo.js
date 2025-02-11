@@ -5,6 +5,10 @@ const express = require("express");
 const router = express.Router();
 const { UserModel, TodoModel } = require("./routes");
 
+router.post("/", async (req, res) = {
+    // add todos
+});
+
 router.get("/", async function(req, res){
     const userId = req.userId;
 
@@ -23,6 +27,8 @@ router.get("/", async function(req, res){
 
 });
 
-
+router.post("/:id", async (req, res) => {
+        // update todos
+})
 
 module.exports  = router;
