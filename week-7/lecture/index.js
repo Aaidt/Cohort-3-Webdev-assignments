@@ -20,7 +20,7 @@ app.post("/signup", async function(req, res) {
         password: z.string().min(5).max(50),
         name: z.string().min(5).max(50)
     });
-
+    // safe parse provides .success to verify if the parsed data matches the schema.
     const parsedData = requiredBody.parse(req.body);
     const parsedDataWithSuccess = requiredBody.safeParse(req.body);
 

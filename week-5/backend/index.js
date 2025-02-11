@@ -9,7 +9,7 @@ const TodoRouter = require("./routes/todo");
 const UserRouter = require("./routes/user");
 
 
-app.use(cors());
+app.use(cors());    
 app.use(express.json());
 app.use(auth);
 
