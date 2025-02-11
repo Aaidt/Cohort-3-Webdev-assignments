@@ -1,7 +1,7 @@
 // define the db schema here
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 const ObjectId = mongoose.ObjectId;
+const Schema = mongoose.Schema;
 
 const User = new Schema({
     email: {type: String, unique: true},
@@ -11,16 +11,17 @@ const User = new Schema({
 
 
 const Todos = new Schema({
-    userId: ObjectId,
+    UserId: ObjectId,
     title: String,
-    time: Date,
-    completed: Boolean 
+    status: Boolean
 });
+
 
 const UserModel = mongoose.model("users", User);
 const TodoModel = mongoose.model("todos", Todos);
 
 module.exports = {
     UserModel: UserModel,
-    TodoModelTodoModel
-}
+    TodoModel: TodoModel 
+};
+
