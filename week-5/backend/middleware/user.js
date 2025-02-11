@@ -1,7 +1,6 @@
 // verify and pass the jwt token in the req.userId for the next func
 const jwt = require("jsonwebtoken");  
-const SECRET = process.env.SECRET || "secret1234";
-
+const JWT_SECRET = process.env.SECRET || "ilovedonutsbuticannoteatthemorillgetfat"; 
 
 async function auth(req, res, next){
     const token = req.headers.token;
@@ -13,14 +12,15 @@ async function auth(req, res, next){
     }
     
     try{
-        jwt.verify(token, SECRET, (err, users) => {
+        jwt.verify(token, JWT_SECRET, (err, users) => {
             if(err){
                 res.status(403).json({ message: "Invalid token." });
+            }else{
+                req.userId = users.userId;
+                next();
             }
-            req.userId = users.userId;
-            next();
         });
-    }catch(err){
-        console.log(err);
-    }
+        }catch(err){
+            console.log(err);
+        }
 }
