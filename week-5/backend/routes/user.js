@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "ilovedonutsbuticannoteatthemorillgetfat"; 
 const { z } = requie("zod"); 
-
+const { UserModel, TodoModel } = require("./db");
 
 router.post("/signup", async function(req, res){
     const requiredBody = z.Object({
@@ -50,6 +50,33 @@ router.post("/signup", async function(req, res){
 });
 
 router.post("/signin", async function(req, res){
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const response = await UserModel.findOne({
+        email: email
+    });
+
+    if(!response){
+        res.status(403).json({
+            message: "User does not exist in the database."
+        });
+    }
+
+    const matchedPassword = bcrypt.compare(password, response.password);
+
+    if(matchedPassword){
+        const token = jwt.sign({
+            id: response._id.toString()            
+        }, JWT_SECRET);
+        res.json({
+            token: token
+        });
+    }else{
+        res.status(403).json({
+            message: "The password is invalid."
+        });
+    }
 
 });
 

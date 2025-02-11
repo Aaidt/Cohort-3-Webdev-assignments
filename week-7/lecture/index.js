@@ -14,7 +14,7 @@ const { z } = require("zod");
 
 app.use(express.json());
 
-app.post("/signup", async function(req, res) {
+app.post("/signup", async function(req, res) {  
     const requiredBody = z.object({
         email: z.string().min(5).max(50).email(),
         password: z.string().min(5).max(50),
