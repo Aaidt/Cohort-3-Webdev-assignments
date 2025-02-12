@@ -5,8 +5,34 @@ const express = require("express");
 const router = express.Router();
 const { UserModel, TodoModel } = require("./routes");
 
-router.post("/", async (req, res) = {
+router.post("/", async (req, res) => {
     // add todos
+    const todos = req.body.todos;
+    const status = req.body.status;
+    
+    if(!todos){
+        return res.status(403).json({
+            message: "No todos sent."
+        });
+    }
+
+    try{
+        const newTodo = await TodoModel.create({
+            title: todos,
+            status: status,
+            userId: req.userId
+        });
+
+        res.status(200).json({
+            message: "Todo created.",
+            todo: newTodo
+        });
+    }catch(err){
+        res.status(500).json({
+            message: "Error creating todo.",
+            error: err.message
+        });
+    }
 });
 
 router.get("/", async function(req, res){
