@@ -8,6 +8,8 @@ const port = 3000;
 const TodoRouter = require("./routes/todo");
 const UserRouter = require("./routes/user");
 
+const mongoose = require("mongoose");
+mongoose.connect("mongodb+srv://aadit:1pUrfhF2ocP7CjC8@cluster0.66cyf.mongodb.net/todo-app-database");
 
 app.use(cors());    
 app.use(express.json());

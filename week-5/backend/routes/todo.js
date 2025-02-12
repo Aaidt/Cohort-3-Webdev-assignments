@@ -71,7 +71,7 @@ router.post("/:id", async (req, res) => {
         res.json({
             msg: "Todo marked as completed.",
         });
-        
+
     }catch(err){
         res.status(500).json({
             message: "Error in updating the todos.",
@@ -81,4 +81,4 @@ router.post("/:id", async (req, res) => {
 
 })
 
-module.exports  = router;
+module.exports = router;
