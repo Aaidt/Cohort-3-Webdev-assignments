@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/todos';
+const API_URL = 'http://localhost:3000/todos';
 
 
 // Fetch existing todos when the page loads
@@ -14,9 +14,7 @@ async function fetchTodos() {
         const response = await axios.get(API_URL);
         const fetchedTask = await response.data.todos;
         console.log(fetchedTask);
-
-
-
+        
         todoList.innerHTML = "";
         fetchedTask.forEach(todo => {
             let todoItem = document.createElement("p");
@@ -34,7 +32,7 @@ async function fetchTodos() {
 async function addTodoToDOM() {
     const taskValue = document.getElementById("todo-input").value;
     await axios.post(API_URL, {
-        todo: taskValue
+        title: taskValue
     });
 }
 
