@@ -7,19 +7,18 @@ const { UserModel, TodoModel } = require("./routes");
 
 router.post("/", async (req, res) => {
     // add todos
-    const todos = req.body.todos;
-    const status = req.body.status;
+    const createPayload = req.body;
     
-    if(!todos){
+    if(!createPayload.title){
         return res.status(403).json({
             message: "No todos sent."
-        });
+        }); 
     }
 
     try{
         const newTodo = await TodoModel.create({
-            title: todos,
-            status: status,
+            title: createPayload.title,
+            status: false,
             userId: req.userId
         });
 
@@ -55,6 +54,31 @@ router.get("/", async function(req, res){
 
 router.post("/:id", async (req, res) => {
         // update todos
+    const { id } = req.params; 
+    const updatePayload = req.body;
+
+    if(updatePayload.status === "undefined"){
+        return res.status(400).json({
+            message: "You must provide a valid status."
+        });
+    }
+
+    try{
+        const updateTodo = await TodoModel.updateOne(
+            { _id: id },
+            { status: updatePayload.status }
+        );
+        res.json({
+            msg: "Todo marked as completed.",
+        });
+        
+    }catch(err){
+        res.status(500).json({
+            message: "Error in updating the todos.",
+            error: err.message
+        });
+    }
+
 })
 
 module.exports  = router;
