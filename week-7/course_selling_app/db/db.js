@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const Schema = mongoose.Schema;
 
-mongoose.connect("");   
 
 const User = new Schema({
     email: { type: String, unique: true },
