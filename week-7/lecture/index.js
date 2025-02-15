@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "heytherewassup@1231233"; 
 
 const mongoose= require("mongoose");
-mongoose.connect("mongodb+srv://aadit:1pUrfhF2ocP7CjC8@cluster0.66cyf.mongodb.net/todo-app-database");
+mongoose.connect("");
 
 const bcrypt = require("bcrypt");
 
