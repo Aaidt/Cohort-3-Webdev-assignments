@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
-const ObjectId = mongoose.ObjectId;
+const ObjectId = mongoose.Types.ObjectId;
 const Schema = mongoose.Schema;
 
+mongoose.connect("");   
 
 const User = new Schema({
-    email: String,
+    email: { type: String, unique: true },
     password: String,
     firstName: String,
     lastName: String
