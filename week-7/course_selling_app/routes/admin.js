@@ -15,19 +15,19 @@ adminRouter.post("/signin", function(req, res){
     });
 })
 
-adminRouter.get("/bulk", function(req, res){
+adminRouter.get("/courses/bulk", function(req, res){
     res.json({
         message: "get courses endpoint."
     });
 })
 
-adminRouter.post("/", function(req, res){
+adminRouter.post("/courses", function(req, res){
     res.json({
         message: "create courses endpoint."
     });
 })
 
-adminRouter.put("/", function(req, res){
+adminRouter.put("/courses/:id", function(req, res){
     res.json({
         message: "change courses endpoint."
     });
