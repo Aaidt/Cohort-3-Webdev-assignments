@@ -8,10 +8,10 @@ const { adminRouter } = require("./routes/admin");
 
 app.use("/user", userRouter);
 app.use("/course", courseRouter);
-
+app.use("/admin", adminRouter);
 
 async function main(){
-    await mongoose.connect("");   
+    await mongoose.connect("j");   
     app.listen(3000, () => {
         console.log("Server is listening on port 3000");
     });
