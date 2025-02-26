@@ -3,9 +3,23 @@
 
 const { Router } = require("express");
 const userRouter = Router();
+const UserModel = require("../db");
 
+userRouter.post("/signup", async function(req, res){
+    const { email, username, firstName, lastName } = req.body; // add zod validation
+    // hash the password so the original is not saved in the db
 
-userRouter.post("/signup", function(req, res){
+    try{
+        await UserModel.create({
+            email,
+            username,
+            firstName,
+            lastName
+        });
+    }catch(e){
+        console.log(e);
+    }
+    
     res.json({
         message: "signup endpoint."
     });
