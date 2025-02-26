@@ -3,7 +3,7 @@
 
 const { Router } = require("express");
 const userRouter = Router();
-const UserModel = require("../db");
+const UserModel = require("../db/db");
 
 userRouter.post("/signup", async function(req, res){
     const { email, username, firstName, lastName } = req.body; // add zod validation
