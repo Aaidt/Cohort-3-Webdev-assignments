@@ -3,32 +3,45 @@
 
 const { Router } = require("express");
 const userRouter = Router();
-const UserModel = require("../db/db");
+const { UserModel } = require("../db/db");
+const jwt = require("jsonwebtoken");
+const JWT_USER_PASSWORD = "jflsdfjsdjfkjfkdjfkdsjfkdj";
 
 userRouter.post("/signup", async function(req, res){
-    const { email, username, firstName, lastName } = req.body; // add zod validation
+    const { email, password, firstName, lastName } = req.body; // add zod validation
     // hash the password so the original is not saved in the db
 
-    try{
-        await UserModel.create({
-            email,
-            username,
-            firstName,
-            lastName
-        });
-    }catch(e){
-        console.log(e);
-    }
-    
+    await UserModel.create({
+        email,
+        password,
+        firstName,
+        lastName
+    });
     res.json({
         message: "signup endpoint."
     });
 })
 
-userRouter.post("/signin", function(req, res){
-    res.json({
-        message: "signin endpoint."
+userRouter.post("/signin", async function(req, res){
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({
+        email,
+        password
     });
+
+    if(user){
+        const token = jwt.sign({
+            id: user._id    
+        }, JWT_USER_PASSWORD);
+        res.json({
+            token
+        });
+    }else{
+        res.json({
+            message: "incorrect credentials"
+        });
+    }
+    
 })
 
 
