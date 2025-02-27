@@ -1,12 +1,11 @@
 // const express = require("express");
 // const Router = express.Router();
-
 const { Router } = require("express");
 const userRouter = Router();
-const { UserModel } = require("../db/db");
+const { UserModel, PurchaseModel } = require("../db/db");
 const jwt = require("jsonwebtoken");
 const { JWT_USER_PASSWORD } = require("../config")
-const { userMiddleware } = require("../middleware/user")
+const { userMiddleware } = require("../middlewares/user")
 
 userRouter.post("/signup", async function(req, res){
     const { email, password, firstName, lastName } = req.body; // add zod validation
@@ -51,6 +50,11 @@ userRouter.get("/purchases", async function(req, res){
     const purchases = await PurchaseModel.find({
         userId
     });
+
+    const coursesData = await CourseModel.find({
+        _id: { $in: puchases.map(x => x.courseId)}
+    });
+    
     res.json({
         purchases
     });

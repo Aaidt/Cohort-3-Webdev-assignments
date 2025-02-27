@@ -3,6 +3,7 @@
 
 const { Router } = require("express");
 const courseRouter = Router();
+const { CourseModel } = require("../db/db");
 
 courseRouter.get("/purchases", async function(req, res){
     const userId = req.userId;

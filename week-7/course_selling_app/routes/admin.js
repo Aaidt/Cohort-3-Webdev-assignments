@@ -3,7 +3,7 @@ const adminRouter = Router();
 const { AdminModel } = require("../db/db");
 const { JWT_ADMIN_PASSWORD } = require("../config")
 const jwt = require("jsonwebtoken");
-const { adminMiddleware } = require("../middleware/admin")
+const { adminMiddleware } = require("../middlewares/admin")
 
 adminRouter.post("/signup", async function(req, res){
     const { email, password, firstName, lastName } = req.body; // add zod validation
