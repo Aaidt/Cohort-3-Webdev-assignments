@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const adminRouter = Router();
 const { AdminModel } = require("../db/db");
-const JWT_ADMIN_PASSWORD = "adasdsadsadsdsadsdas";
+const { JWT_ADMIN_PASSWORD } = require("../config")
 const jwt = require("jsonwebtoken");
 
 
@@ -46,7 +46,18 @@ adminRouter.get("/courses/bulk", function(req, res){
     });
 })
 
-adminRouter.post("/courses", function(req, res){
+adminRouter.post("/courses", adminMiddleware, async function(req, res){
+    const adminId = req.userId;
+    const { title, description, price, imageURL, creatorId } = req.body;
+
+    // create web3 saas vid => to learn abt how admin can directly post their images on our website instead of giving the URL 
+    await CourseModel.create({
+        title,
+        description,
+        price,
+        imageURL,
+        creatorId: adminId
+    });
     res.json({
         message: "create courses endpoint."
     });
