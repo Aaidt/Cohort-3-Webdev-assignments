@@ -1,5 +1,6 @@
-const JWT_USER_PASSWORD = "jflsdfjsdjfkjfkdjfkdsjfkdj";
-const JWT_ADMIN_PASSWORD = "adasdsadsadsdsadsdas";
+require("dotenv").config();
+const JWT_USER_PASSWORD = process.env.JWT_USER_PASSWORD;
+const JWT_ADMIN_PASSWORD = process.env.JWT_ADMIN_PASSWORD;
 
 module.exports = {
     JWT_USER_PASSWORD: JWT_USER_PASSWORD,
