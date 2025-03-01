@@ -84,3 +84,80 @@ adminRouter.post("/signin", async function(req, res) {
         });
     }
 });
+
+adminRouter.post("/items", adminMiddleware, async function(req, res){
+    const adminId = req.userId;
+
+    // input validation
+    const itemInput = z.object({
+        title: z.string().max(100),
+        description: z.string().max(100),
+        price: z.number().gte(999),
+        availability: z.boolean()
+    });
+
+    const data = itemInput.safeParse(req.body);
+
+    if(!data.success){
+        res.status(403).json({
+            message: "Invalid format.",
+            error: data.error
+        });
+        return
+    }
+
+    const { title, description, price, availability } = req.body;
+
+    try{
+        const item = await ItemModel.create({
+            title,
+            description,
+            price,
+            availability,
+            sellerId: adminId
+        });
+        res.json({
+            message: "item added successfully",
+            itemId: item._id
+        })
+    }catch(err){
+        console.log(err);
+    }
+    
+});
+
+adminRouter.put("/updateItems", adminMiddleware, async function(req, res){
+    const adminId = req.userId;
+
+    const { title, description, price, availability, itemId } = req.body;
+
+    try{
+        const item = await ItemModel.updateOne({
+            _id: itemId,
+            sellerId: adminId
+        }, {
+            title,
+            description,
+            price,
+            availability
+        });
+        res.json({
+            message: "Items updated successfully",
+            itemId: item._id
+        });
+    }catch(err){
+        console.log(err);
+    }
+
+});
+
+adminRouter.get("/viewItems", adminMiddleware, async function(req, res){
+    const adminId = req.userId;
+    const item = await ItemModel.find({
+        _id: adminId
+    });
+    res.json({
+        message: "Got all items successfully.",
+        items: item
+    });
+});

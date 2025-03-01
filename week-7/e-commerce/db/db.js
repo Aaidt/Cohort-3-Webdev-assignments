@@ -16,7 +16,7 @@ const AdminSchema = new Schema({
     lastName: String
 });
 
-const ItemScheama = new Schema({
+const ItemSchema = new Schema({
     title: String,
     description: String,
     price: Number,
