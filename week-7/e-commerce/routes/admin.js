@@ -161,3 +161,7 @@ adminRouter.get("/viewItems", adminMiddleware, async function(req, res){
         items: item
     });
 });
+
+module.exports = {
+    adminRouter: adminRouter 
+}
