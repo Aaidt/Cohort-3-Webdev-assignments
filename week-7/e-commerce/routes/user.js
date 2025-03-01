@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT_USER_SECRET = require("../config");
 const { mongoose } = require("mongoose");   
-const { UserModel } = require("../db/db");
+const { UserModel, CartModel } = require("../db/db");
 const { userMiddleware } = require("../middlewares/user");
 
 
@@ -83,7 +83,55 @@ userRouter.post("/signin", async function(req, res) {
     }
 });
 
-userRouter.get("/viewItems", userMiddleware, async function(req, res) {
-    
+userRouter.get("/viewItems", async function(req, res) {
+    const items = await ItemModel.find({});
+    res.json({
+        message: "Get all the items here!!!",
+        items: items
+    });
 })
 
+userRouter.post("/cart/:itemId", userMiddleware, async function(req, res) {
+    const itemId = req.params.itemId;
+    const userId = req.userId;
+
+    try{
+        const itemInfo = await ItemModel.findOne({
+            _id: itemId
+        });
+    
+        if(!itemInfo){
+            res.status(404).json({
+                message: "Item not found"
+            });
+        }
+    
+        const cart = await CartModel.create({
+            ownerId: userId,
+            itemInfo: {
+                title: itemInfo.title,
+                description: itemInfo.description,
+                price: itemInfo.price,
+                availability: itemInfo.availability
+            }
+        });
+    }catch(err){
+        console.log(err);
+    }
+});
+
+userRouter("/viewCart", userMiddleware, async function(req, res) {
+    const userId = req.userId;
+    const cartItems = await ItemModel.find({
+        ownerId: userId
+    });
+    res.json({
+        message: "View your cart here!!!",
+        cart: cartItems
+    });
+})
+
+
+module.exports = {
+    userRouter
+}
