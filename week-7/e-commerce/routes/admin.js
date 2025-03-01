@@ -6,6 +6,8 @@ const { z } = require("zod");
 const jwt = require("jsonwebtoken");
 const adminRouter = Router();
 const { JWT_ADMIN_SECRET } = require("../config")
+const { adminMiddleware } = require("../middlewares/admin");
+
 
 adminRouter.post("/signup", async function(req, res) {
     // input validation using zod
@@ -71,7 +73,7 @@ adminRouter.post("/signin", async function(req, res) {
 
     if(matchedPassword){
         const token = jwt.sign({
-            username
+            id: response._id
         }, JWT_ADMIN_SECRET);
         res.json({
             token: token
