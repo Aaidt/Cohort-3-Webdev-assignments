@@ -1,19 +1,18 @@
 require("dotenv").config();
-const { express } = require("express");
+const express = require("express");
 const app = express();
 const mongoose  = require("mongoose");
 
-const { userRouter } = require("../routes/user");
-const { adminRouter } = require("../routes/admin");
-const { itemRouter } = require("../routes/item");
+const { userRouter } = require("./routes/user");
+const { adminRouter } = require("./routes/admin");
+const { itemRouter } = require("./routes/item");
 
-const { port } = require("./config");
 
 app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
-app.use("/item", itemRouter);
+// app.use("/item", itemRouter);
 
 async function main(){
     await mongoose.connect(process.env.MONGODB_URL);

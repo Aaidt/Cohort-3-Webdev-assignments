@@ -3,7 +3,7 @@
 const { JWT_USER_PASSWORD } = require("../config");
 const jwt = require("jsonwebtoken");
 
-function userMiddleware(){
+function userMiddleware(req, res, next){
     const token = req.headers.token;
     const decode = jwt.verify(token, JWT_USER_PASSWORD);
     if(decode){
@@ -16,5 +16,5 @@ function userMiddleware(){
     }
 }
 module.exports = {
-    userMiddleware
+    userMiddleware: userMiddleware
 }

@@ -120,7 +120,7 @@ userRouter.post("/cart/:itemId", userMiddleware, async function(req, res) {
     }
 });
 
-userRouter("/viewCart", userMiddleware, async function(req, res) {
+userRouter.get("/viewCart", userMiddleware, async function(req, res) {
     const userId = req.userId;
     const cartItems = await ItemModel.find({
         ownerId: userId
