@@ -55,7 +55,7 @@ userRouter.get("/purchases", async function(req, res){
         _id: { $in: puchases.map(x => x.courseId)}
     });
     
-    res.json({
+    res.json({  
         purchases
     });
 })
