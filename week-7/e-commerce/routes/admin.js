@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const { z } = require("zod");
 const jwt = require("jsonwebtoken");
 const adminRouter = Router();
-const JWT_ADMIN_PASSWORD = require("../config")
+const { JWT_ADMIN_PASSWORD, JWT_USER_PASSWORD } = require("../config")
 const { adminMiddleware } = require("../middlewares/admin");
 
 
@@ -74,7 +74,6 @@ adminRouter.post("/signin", async function(req, res) {
         });
     
         const matchedPassword = await bcrypt.compare(password, response.password);
-    
         if(matchedPassword){
             const token = jwt.sign({
                 id: response._id
