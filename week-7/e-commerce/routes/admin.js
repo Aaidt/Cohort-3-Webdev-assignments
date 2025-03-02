@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { mongoose } = require("mongoose");
-const { AdminModel } = require("../db/db");
+const { AdminModel, ItemModel } = require("../db/db");
 const bcrypt = require("bcrypt");
 const { z } = require("zod");
 const jwt = require("jsonwebtoken");
@@ -140,7 +140,17 @@ adminRouter.put("/updateItems", adminMiddleware, async function(req, res){
     const { title, description, price, availability, itemId } = req.body;
 
     try{
-        const item = await ItemModel.updateOne({
+        const item = await ItemModel.findOne({
+            _id: itemId,
+            sellerId: adminId
+        });
+        if(!item){
+            return res.status(404).json({
+                message: "Item not found"
+            });
+        }
+
+        const updateItem = await ItemModel.updateOne({
             _id: itemId,
             sellerId: adminId
         }, {
@@ -150,8 +160,7 @@ adminRouter.put("/updateItems", adminMiddleware, async function(req, res){
             availability
         });
         res.json({
-            message: "Items updated successfully",
-            itemId: item._id
+            message: "Items updated successfully"
         });
     }catch(err){
         console.log(err);

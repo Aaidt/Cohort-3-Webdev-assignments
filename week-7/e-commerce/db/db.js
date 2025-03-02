@@ -1,6 +1,6 @@
 const { mongoose } = require("mongoose");
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Types.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const UserSchema = new Schema({
     username: String,
@@ -20,7 +20,11 @@ const ItemSchema = new Schema({
     title: String,
     description: String,
     price: Number,
-    availability: Boolean
+    availability: Boolean,
+    sellerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AdminSchema"
+    }
 });
 
 const CartSchema = new Schema({
