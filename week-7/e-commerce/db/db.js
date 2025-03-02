@@ -28,13 +28,15 @@ const ItemSchema = new Schema({
 });
 
 const CartSchema = new Schema({
-    title: String,
-    description: String,
-    price: Number,
-    availability: Boolean,
-    purchasedItem: {
+    ownerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "UserSchema"
+    },
+    purchasedItem: {
+        title: String,
+        description: String,
+        price: Number,
+        availability: Boolean  
     }
 });
 
