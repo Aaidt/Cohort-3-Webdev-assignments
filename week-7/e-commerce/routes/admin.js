@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const { z } = require("zod");
 const jwt = require("jsonwebtoken");
 const adminRouter = Router();
-const { JWT_ADMIN_SECRET } = require("../config")
+const JWT_ADMIN_PASSWORD = require("../config")
 const { adminMiddleware } = require("../middlewares/admin");
 
 
@@ -31,7 +31,7 @@ adminRouter.post("/signup", async function(req, res) {
     const { username, password, firstName, lastName } = req.body;
 
     // hash the password and add to the db
-    const saltRounds = 5;
+    const saltRounds = 2;
     try{
         const hashedPassword = await bcrypt.hash(password, saltRounds);    
         await AdminModel.create({
@@ -40,6 +40,9 @@ adminRouter.post("/signup", async function(req, res) {
             firstName,
             lastName
         });
+        res.json({
+            message: "Signup successfull."
+        })
     }catch(e){
         console.log("The err is:" + e);
     }
@@ -65,24 +68,30 @@ adminRouter.post("/signin", async function(req, res) {
 
     const { username, password } = req.body;
 
-    const response = await AdminModel.findOne({
-        username: username
-    });
-
-    const matchedPassword = await bcrypt.compare(password, response.password);
-
-    if(matchedPassword){
-        const token = jwt.sign({
-            id: response._id
-        }, JWT_ADMIN_SECRET);
-        res.json({
-            token: token
+    try{
+        const response = await AdminModel.findOne({
+            username: username
         });
-    }else{
-        res.json({
-            message: "Password is incorrect."
-        });
+    
+        const matchedPassword = await bcrypt.compare(password, response.password);
+    
+        if(matchedPassword){
+            const token = jwt.sign({
+                id: response._id
+            }, JWT_ADMIN_PASSWORD);
+            res.json({
+                message: "Signed-in successfully.",
+                token: token
+            });
+        }else{
+            res.json({
+                message: "Password is incorrect."
+            });
+        }
+    }catch(err){
+        console.log(err);
     }
+
 });
 
 adminRouter.post("/items", adminMiddleware, async function(req, res){

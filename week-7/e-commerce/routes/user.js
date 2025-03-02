@@ -3,7 +3,7 @@ const userRouter = Router();
 const { z } = require("zod");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const JWT_USER_SECRET = require("../config");
+const JWT_USER_PASSWORD = require("../config");
 const { mongoose } = require("mongoose");   
 const { UserModel, CartModel } = require("../db/db");
 const { userMiddleware } = require("../middlewares/user");
@@ -72,7 +72,7 @@ userRouter.post("/signin", async function(req, res) {
     if(matchedPassword){
         const token = jwt.sign({
             id: response._id
-        }, JWT_USER_SECRET);
+        }, JWT_USER_PASSWORD);
         res.json({
             token: token
         });
