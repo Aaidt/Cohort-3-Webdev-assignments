@@ -171,7 +171,7 @@ adminRouter.put("/updateItems", adminMiddleware, async function(req, res){
 adminRouter.get("/viewItems", adminMiddleware, async function(req, res){
     const adminId = req.userId;
     const item = await ItemModel.find({
-        _id: adminId
+        sellerId: adminId
     });
     res.json({
         message: "Got all items successfully.",
