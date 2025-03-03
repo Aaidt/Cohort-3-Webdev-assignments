@@ -4,44 +4,46 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  let counterVisibility = true;
-
-  return (
-    <div>
-      {counterVisibility ? <Counter></Counter> : null}
-      {counterVisibility && <Counter></Counter>}
-    </div>
-  )
-}
-
-function Counter() {
   const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
 
-  console.log("counter");
+  function increaseCount(){
+    setCount(count => count + 1);
+  }
 
-  useEffect(function(){
-    setInterval(function (){
-      setCount(count => count + 1);
-    }, 1000)
-    console.log("mounted");
-  }, []);
-
-
-  // function increaseCount(){
-  //   setCount(count + 1);
-  // }
-  // function decreaseCount(){
-  //   setCount(count - 1);
-  // }
-  // function resetCount(){
-  //   setCount(0);
-  // }
+  function decreaseCount(){
+    setCount2(count2 => count2 - 1);
+  }
 
   return <div>
-    <h2>{count}</h2>
-    {/* <button onClick={increaseCount}>Increase Count</button>
-    <button onClick={decreaseCount}>Decrease Count</button>
-    <button onClick={resetCount}>Reset Count</button> */}
+    <Counter count={count} count2={count2}/>
+    <button onClick={increaseCount}>Increase count</button>
+    <button onClick={decreaseCount}>Decrease count</button>
+  </div>
+
+}
+
+function Counter(props) {
+  useEffect(function(){
+    console.log("mount");
+
+    return function() {
+      console.log("unmount");
+    }
+  }, [])
+
+  useEffect(function(){
+    console.log("count has changed.");
+
+    return function(){
+      console.log("cleanup inside second effect");
+    }
+  }, [props.count]);
+
+
+  return <div>
+    Counter1 {props.count} <br />  
+    Counter2 {props.count2} <br />  
   </div>
 }
 
