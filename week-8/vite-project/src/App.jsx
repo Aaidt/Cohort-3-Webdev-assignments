@@ -4,10 +4,12 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  let counterVisibility = true;
 
   return (
     <div>
-      <Counter></Counter>
+      {counterVisibility ? <Counter></Counter> : null}
+      {counterVisibility && <Counter></Counter>}
     </div>
   )
 }
