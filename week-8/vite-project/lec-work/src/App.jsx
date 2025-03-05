@@ -73,6 +73,10 @@ function App(){
         setTabData(json);
         setLoading(false);
       })
+
+      // return () =>{
+      //   // cleanup func
+      // }
   }, [currentTab])
 
   return (
