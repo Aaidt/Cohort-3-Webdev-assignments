@@ -61,14 +61,27 @@ function App(){
   // </div>
 
 
-  const [currentTab, setCurrentTab] = useState("feed");
+  const [currentTab, setCurrentTab] = useState(1);
+  const [tabData, setTabData] = useState({});
+
+  useEffect(function (){
+    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+      .then(async res => {
+        const json = await res.json();
+        setTabData(json);
+      })
+  }, [currentTab])
 
   return (
     <div>
-      <button onClick={() => setCurrentTab("feed")} style={{margin: 5, color: currentTab == "feed" ? "red":"black"}}>Feed</button>
-      <button onClick={() => setCurrentTab("jobs")} style={{margin: 5, color: currentTab == "jobs" ? "red":"black"}}>Jobs</button>
-      <button onClick={() => setCurrentTab("notifications")} style={{margin: 5, color: currentTab == "notifications" ? "red":"black"}}>Notifications</button>
+      <button onClick={() => setCurrentTab(1)} style={{margin: 5, color: currentTab == 1 ? "red":"black"}}>Feed</button>
+      <button onClick={() => setCurrentTab(2)} style={{margin: 5, color: currentTab == 2 ? "red":"black"}}>Jobs</button>
+      <button onClick={() => setCurrentTab(3)} style={{margin: 5, color: currentTab == 3 ? "red":"black"}}>Notifications</button><br />
+
+
+      {tabData.title}
     </div>
+
   )
 
 } 
