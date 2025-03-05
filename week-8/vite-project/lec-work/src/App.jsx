@@ -38,28 +38,38 @@ function App(){
       
   // )
 
-  const [count, setCount] = useState (0);
+  // const [count, setCount] = useState (0);
 
 
-  useEffect(function (){
-    console.log("This will run only on mount");
-    setInterval(increaseCount, 1000); 
-  }, []); 
+  // useEffect(function (){
+  //   console.log("This will run only on mount");
+  //   setInterval(increaseCount, 1000); 
+  // }, []); 
 
-  useEffect(function (){
-    console.log("This will run on mount and also every time the count changes as it is the dependency.");
-    console.log("The count has been updated to: " + count);
-  }, [count]); //
+  // useEffect(function (){
+  //   console.log("This will run on mount and also every time the count changes as it is the dependency.");
+  //   console.log("The count has been updated to: " + count);
+  // }, [count]); //
 
-  function increaseCount(){
-    setCount(count => count + 1);
-  }
+  // function increaseCount(){
+  //   setCount(count => count + 1);
+  // }
 
 
-  return <div>
-    {count}
-  </div>
+  // return <div>
+  //   {count}
+  // </div>
 
+
+  const [currentTab, setCurrentTab] = useState("feed");
+
+  return (
+    <div>
+      <button onClick={() => setCurrentTab("feed")} style={{margin: 5, color: currentTab == "feed" ? "red":"black"}}>Feed</button>
+      <button onClick={() => setCurrentTab("jobs")} style={{margin: 5, color: currentTab == "jobs" ? "red":"black"}}>Jobs</button>
+      <button onClick={() => setCurrentTab("notifications")} style={{margin: 5, color: currentTab == "notifications" ? "red":"black"}}>Notifications</button>
+    </div>
+  )
 
 } 
 
