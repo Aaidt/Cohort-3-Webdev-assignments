@@ -42,8 +42,15 @@ function App(){
 
 
   useEffect(function (){
+    console.log("This will run only on mount");
     setInterval(increaseCount, 1000); 
-  }, []);
+  }, []); 
+
+  useEffect(function (){
+    console.log("This will run on mount and also every time the count changes as it is the dependency.");
+    console.log("The count has been updated to: " + count);
+  }, [count]); //
+
   function increaseCount(){
     setCount(count => count + 1);
   }
