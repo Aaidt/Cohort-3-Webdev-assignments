@@ -63,12 +63,15 @@ function App(){
 
   const [currentTab, setCurrentTab] = useState(1);
   const [tabData, setTabData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(function (){
+    setLoading(true);
     fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
       .then(async res => {
         const json = await res.json();
         setTabData(json);
+        setLoading(false);
       })
   }, [currentTab])
 
@@ -79,7 +82,7 @@ function App(){
       <button onClick={() => setCurrentTab(3)} style={{margin: 5, color: currentTab == 3 ? "red":"black"}}>Notifications</button><br />
 
 
-      {tabData.title}
+      {loading ? "Loading..." : tabData.title}
     </div>
 
   )
