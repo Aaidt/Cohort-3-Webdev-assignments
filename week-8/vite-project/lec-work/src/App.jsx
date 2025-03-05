@@ -99,31 +99,58 @@ import { PostComponent } from "./post";
 //   </div>
 // }
 
-  const Card = ({ children }) => {
-    return (
-    <div style={{
-      borderRadius: 10,
-      padding: 20,
-      margin: 10,
-      backgroundColor: "black",
-      color: "white"
-    }}>
-      {children}
-    </div>
-    )  
-  }
+  // const Card = ({ children }) => {
+  //   return (
+  //   <div style={{
+  //     borderRadius: 10,
+  //     padding: 20,
+  //     margin: 10,
+  //     backgroundColor: "black",
+  //     color: "white"
+  //   }}>
+  //     {children}
+  //   </div>
+  //   )  
+  // }
+
+
+  // const App = () => {
+  //   return <div>
+  //     <Card>
+  //       <h1>This is the first modal.</h1>
+  //       <p>HEy</p>
+  //     </Card>
+  //     <Card>
+  //       <h1>This is the second modal.</h1>
+  //       <p>HEy</p>
+  //     </Card>
+  //   </div>
+  // }
 
 
   const App = () => {
+    // const todos = [{
+    //   title: "Go to the gym.",
+    //   done: true
+    // }, {
+    //   title: "Go for a swim",
+    //   done: false
+    // }]
+    // const todoComponents = todos.map(todo => <Todo 
+    //   title= {todo.title} done= {todo.done} />)
+
     return <div>
-      <Card>
-        <h1>This is the first modal.</h1>
-        <p>HEy</p>
-      </Card>
-      <Card>
-        <h1>This is the second modal.</h1>
-        <p>HEy</p>
-      </Card>
+      {[
+        <Todo key={1} title={"Go to the gym"} done={true} />,
+        <Todo key={2} title={"Eat food"} done={false} />  
+      ]}
+    </div>
+  }
+
+  function Todo({title, done}){
+    return <div>
+      {title}:
+      {done ? "done" : "Not done yet"}
     </div>
   }
 
