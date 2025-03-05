@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { PostComponent } from "./post";
 
-function App(){
+// function App(){
   // const [post, setPost] = useState([]);
 
   // const postComponents = post.map(post => <PostComponent
@@ -61,42 +61,71 @@ function App(){
   // </div>
 
 
-  const [currentTab, setCurrentTab] = useState(1);
-  const [tabData, setTabData] = useState({});
-  const [loading, setLoading] = useState(true);
+//   const [currentTab, setCurrentTab] = useState(1);
+//   const [tabData, setTabData] = useState({});
+//   const [loading, setLoading] = useState(true);
 
-  useEffect(function (){
-    setLoading(true);
-    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
-      .then(async res => {
-        const json = await res.json();
-        setTabData(json);
-        setLoading(false);
-      })
+//   useEffect(function (){
+//     setLoading(true);
+//     fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+//       .then(async res => {
+//         const json = await res.json();
+//         setTabData(json);
+//         setLoading(false);
+//       })
 
-      // return () =>{
-      //   // cleanup func
-      // }
-  }, [currentTab])
+//       // return () =>{
+//       //   // cleanup func
+//       // }
+//   }, [currentTab])
 
-  return (
-    <div>
-      <button onClick={() => setCurrentTab(1)} style={{margin: 5, color: currentTab == 1 ? "red":"black"}}>Feed</button>
-      <button onClick={() => setCurrentTab(2)} style={{margin: 5, color: currentTab == 2 ? "red":"black"}}>Jobs</button>
-      <button onClick={() => setCurrentTab(3)} style={{margin: 5, color: currentTab == 3 ? "red":"black"}}>Notifications</button><br />
+//   return (
+//     <div>
+//       <button onClick={() => setCurrentTab(1)} style={{margin: 5, color: currentTab == 1 ? "red":"black"}}>Feed</button>
+//       <button onClick={() => setCurrentTab(2)} style={{margin: 5, color: currentTab == 2 ? "red":"black"}}>Jobs</button>
+//       <button onClick={() => setCurrentTab(3)} style={{margin: 5, color: currentTab == 3 ? "red":"black"}}>Notifications</button><br />
 
 
-      {loading ? "Loading..." : tabData.title}
-    </div>
+//       {loading ? "Loading..." : tabData.title}
+//     </div>
 
-  )
+//   )
 
-} 
+// } 
 
 // function profileCard(){
 //   return <div>
 
 //   </div>
 // }
+
+  const Card = ({ children }) => {
+    return (
+    <div style={{
+      borderRadius: 10,
+      padding: 20,
+      margin: 10,
+      backgroundColor: "black",
+      color: "white"
+    }}>
+      {children}
+    </div>
+    )  
+  }
+
+
+  const App = () => {
+    return <div>
+      <Card>
+        <h1>This is the first modal.</h1>
+        <p>HEy</p>
+      </Card>
+      <Card>
+        <h1>This is the second modal.</h1>
+        <p>HEy</p>
+      </Card>
+    </div>
+  }
+
 
 export default App
