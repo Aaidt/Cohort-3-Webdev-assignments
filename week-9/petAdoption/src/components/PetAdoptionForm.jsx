@@ -18,6 +18,8 @@ const PetAdoptionForm = () => {
 
   const [show, setShow] = useState(false);
 
+  const [errors, setErrors] = useState("")
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues({
@@ -27,7 +29,33 @@ const PetAdoptionForm = () => {
   } 
 
   const handleSubmit = () => {
+    console.log(`
+      petName: ${petName}
+      petType:${petType}
+      breed: ${breed}
+      adopterName: ${adopterName}
+      email: ${email}
+      phone: ${phone}`
+    );
+
+    if(!petName || !petType || !breed || !adopterName || !email || !phone){
+      alert("please fill all the fields.");
+      setShow(false)
+      return;
+    }
+
     setShow(true);
+    setValues({
+      petName:"",
+      petType:"Dog",
+      breed:"",
+      adopterName:"",
+      email:"",
+      phone:""
+    });
+
+    const data = { petName, petType, breed, adopterName, email, phone }
+    setFormData((prevData) => [...prevData, data])
   }
 
   if(!show){
