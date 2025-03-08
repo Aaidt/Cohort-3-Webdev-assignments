@@ -17,6 +17,7 @@
   
     background-color: #c59771bd;
     max-width: 550px;
+    max-height: 530px;
     margin: 20px auto;
     padding: 30px;
     text-align: left;
@@ -36,7 +37,7 @@
   label {
   
     display: block;
-    margin: 10px 0;
+    margin: 9px 0;
   
   }
   
@@ -59,7 +60,7 @@
   input[type="password"] {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     font-family: inherit;
   }
   

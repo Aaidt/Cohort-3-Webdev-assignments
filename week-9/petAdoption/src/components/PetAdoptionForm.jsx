@@ -26,6 +26,10 @@ const PetAdoptionForm = () => {
     })
   } 
 
+  const handleSubmit = () => {
+    setShow(true);
+  }
+
   if(!show){
     return (
       <>
@@ -93,8 +97,9 @@ const PetAdoptionForm = () => {
               name="phone"
               onChange={handleChange}>
             </input>
-          </div>
+          </div>  
 
+          <button type="submit" onClick={handleSubmit}>SUBMIT</button>
         </div>
       </>
     )
