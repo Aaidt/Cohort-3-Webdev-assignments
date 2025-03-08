@@ -3,31 +3,6 @@ import { useState } from "react";
 import "../myApp.css";
 
 const PetAdoptionForm = () => {
-// const DropDown = () => {
-//   const [open, setOpen] = useState(false);
-//   const [value, setValue] = useState("");
-
-//   const toggleOpen = () => {
-//     setOpen(!open);
-//   }
-
-//   const handleChange = (event) => {
-//     setValue(event.target.value);
-//   }
-
-//   return (
-//     <div style={{display: "flex"}}>
-//       <input type="text" value={value} onChange={handleChange}></input>
-//       <span><button style={{borderRadius: "10px", margin: 10, padding: 7}} onClick={toggleOpen}>{open ? "isOpen" : "not Open"}</button></span>
-//       {open && (
-//         <ul>
-//           <li onClick={() => setValue("dog")}>DOG</li>
-//           <li onClick={() => setValue("cat")}>CAT</li>
-//         </ul>
-//       )}
-//     </div>
-// )
-// }
 
   return (
     <>
