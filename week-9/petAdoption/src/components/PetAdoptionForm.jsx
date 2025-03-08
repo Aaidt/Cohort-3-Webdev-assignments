@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from "react";
 import "../myApp.css";
+import { AdopterData } from "./AdopterData"
+
 
 const PetAdoptionForm = () => {
 
@@ -56,6 +58,10 @@ const PetAdoptionForm = () => {
 
     const data = { petName, petType, breed, adopterName, email, phone }
     setFormData((prevData) => [...prevData, data])
+  }
+
+  const handleGoBack = () => {
+    setShow(!show);
   }
 
   if(!show){
@@ -133,6 +139,8 @@ const PetAdoptionForm = () => {
     )
   }
   
+  return <AdopterData formData={formData} handleGoBack={handleGoBack}/>
+
 }
 
 export default PetAdoptionForm
