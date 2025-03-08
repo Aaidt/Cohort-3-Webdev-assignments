@@ -44,6 +44,11 @@ const PetAdoptionForm = () => {
   
           <div>
             <label htmlFor="petType">Pet Type:</label>
+            <select name="petType" value={petType} onChange={handleChange}>
+              <option value="dog">Dog</option>
+              <option value="Cat">Cat</option>
+            </select>
+
           </div>
   
           <div>
