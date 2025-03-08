@@ -1,34 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import Header from "./Components/Header";
+import Form from "./Components/Form";
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{
+      backgroundImage: "url('https://imgs.search.brave.com/DyW5i6aYHQyIjGXPef1erz6cKIcO9Xc8JCFN0GTGPLo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/dW1iYmVsbHMtZmxv/b3ItZ3ltLWFpLWdl/bmVyYXRpdmVfMTIz/ODI3LTIzNzQzLmpw/Zz9zZW10PWFpc19o/eWJyaWQ')",
+      backgroundSize: "cover",
+      height: "100vh"
+    }}>
+      <Header message={"Form"} />
+
+      <Form />
+    </div>
   )
 }
 
