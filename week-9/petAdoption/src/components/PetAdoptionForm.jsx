@@ -9,47 +9,47 @@ const PetAdoptionForm = () => {
       <div className="form">
         
         <div>
-          <b>
+          <label>
             Pet Name:
-          </b>
-          <input style={{margin: 20, width: 900}} type="text" placeholder="Enter name of the pet:"></input>
+          </label>
+          <input type="text" placeholder="Enter name of the pet:"></input>
         </div>
 
         <div>
-          <b>
+          <label>
             Pet Type:
-          </b>
+          </label>
           <div>
-            <DropDown />
+            
           </div>
         </div>
 
         <div>
-          <b>
+          <label>
             Breed:
-          </b>
-          <input style={{margin: 20, width: 900}} type="text" placeholder="Enter name of the pet:"></input>
+          </label>
+          <input type="text" placeholder="Enter name of the pet:"></input>
         </div>
 
         <div>
-          <b>
+          <label>
             Your name:
-          </b>
-          <input style={{margin: 20, width: 900}} type="text" placeholder="Enter name of the pet:"></input>
+          </label>
+          <input type="text" placeholder="Enter name of the pet:"></input>
         </div>
 
         <div>
-          <b>
+          <label>
             Email:
-          </b>
-          <input style={{margin: 20, width: 900}} type="text" placeholder="Enter name of the pet:"></input>
+          </label>
+          <input type="text" placeholder="Enter name of the pet:"></input>
         </div>
 
         <div>
-          <b>
+          <label>
             Phone:
-          </b>
-          <input style={{margin: 20, width: 900}} type="text" placeholder="Enter name of the pet:"></input>
+          </label>
+          <input type="text" placeholder="Enter name of the pet:"></input>
         </div>
       </div>
     </>
