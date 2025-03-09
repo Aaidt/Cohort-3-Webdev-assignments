@@ -1,4 +1,5 @@
 import './App.css'
+import React, { useState } from "react"
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
@@ -82,22 +83,27 @@ function App() {
 }
 
 function LightBulb(){
+  const [BulbOn, setBulbOn] = useState(true)
   return <div>
-    <BulbState />
-    <ToggleBulbState />
+    <BulbState BulbOn={BulbOn} />
+    <ToggleBulbState setBulbOn={setBulbOn} />
   </div>
 }
 
 
-function BulbState(){
+function BulbState({BulbOn}){
   return <div>
-
+    {BulbOn ? "ON" : "OFF"} 
   </div>
 }
 
-function ToggleBulbState(){
+function ToggleBulbState({setBulbOn}){
+  function toggle(){
+    setBulbOn(currentState => !currentState); 
+  }
+
   return <div>
-    <button>Toggle the bulb</button>
+    <button onClick={toggle}>Toggle the bulb</button>
   </div>
 }
 
