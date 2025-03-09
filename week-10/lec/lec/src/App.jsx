@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState } from "react"
+import React, { useState, createContext, useContext } from "react"
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
@@ -75,29 +75,50 @@ import React, { useState } from "react"
 //       <button onClick={redirectUser}>Go Back</button>
 //   </div>
 
+const BulbContext = createContext();
+
+function BulbProvider({ children }){
   
+  const [BulbOn, setBulbOn] = useState(true);
+  
+  return <BulbContext.Provider value={{
+    BulbOn: BulbOn,
+    setBulbOn: setBulbOn
+  }}>
+
+    {children}
+
+  </BulbContext.Provider>
+}
+
+
 function App() {
+
   return <div>
-    <LightBulb />
+    <BulbProvider>
+      <LightBulb />
+    </BulbProvider>
   </div>
 }
 
 function LightBulb(){
-  const [BulbOn, setBulbOn] = useState(true)
+
   return <div>
-    <BulbState BulbOn={BulbOn} />
-    <ToggleBulbState setBulbOn={setBulbOn} />
+    <BulbState />
+    <ToggleBulbState />
   </div>
 }
 
 
-function BulbState({BulbOn}){
+function BulbState(){
+  const { BulbOn } = useContext(BulbContext)
   return <div>
     {BulbOn ? "ON" : "OFF"} 
   </div>
 }
 
-function ToggleBulbState({setBulbOn}){
+function ToggleBulbState(){
+  const { setBulbOn } = useContext(BulbContext)
   function toggle(){
     setBulbOn(currentState => !currentState); 
   }
