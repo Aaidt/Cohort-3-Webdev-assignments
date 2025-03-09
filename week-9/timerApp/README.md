@@ -12,7 +12,7 @@ Build a simple timer app with start, pause, reset, and editable time functionali
      - `time` (in seconds)
      - `isRunning` (timer status)
      - `editState` (for tracking the field being edited and its value)
-
+j
 ### 2. **Countdown Logic**
    - Implement a `useEffect` that updates the `time` every second when the timer is active.
 
