@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import "./Timer.module.css" 
 
 
@@ -6,17 +6,19 @@ const Timer = () => {
 
   const [Time, setTime] = useState(0);
   const [TimerState, setTimerState] = useState(false);
-  let start;
+  const intervalRef = useRef(null);
 
   const startTimer = () => {
-    start = setInterval(() => {
+    if(intervalRef.current !== null) return;
+    intervalRef.current = setInterval(() => {
       setTime(time => time + 1)
     }, 1000);
   }
   
 
   const stopTimer = () => {
-    setTime(clearInterval(start))
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
   }
 
 
@@ -24,7 +26,7 @@ const Timer = () => {
   return (
     <div className="timerApp">
       <div className="timerCircle">
-        {Time}<br />
+        <p>Time: {Time}</p><br />
       </div>
       <button onClick={startTimer}>START</button>
       <button onClick={stopTimer}>STOP</button>
