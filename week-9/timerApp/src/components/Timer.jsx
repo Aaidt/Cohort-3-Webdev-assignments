@@ -21,14 +21,12 @@ const Timer = () => {
     intervalRef.current = null;
   }
 
-
-  const pauseTimer = () => {
-
-  }
-
-
   const resetTimer = () => {
     setTime(0);
+  }
+
+  const editTimer = () => {
+    
   }
 
   return (
@@ -41,8 +39,8 @@ const Timer = () => {
       <div className="actionButtons">
         <button className="actionButton" onClick={startTimer}>START</button>
         <button className="actionButton" onClick={stopTimer}>STOP</button>
-        <button className="actionButton" onClick={pauseTimer}>PAUSE</button>
         <button className="actionButton" onClick={resetTimer}>RESET</button>
+        <button className="actionButton" onClick={editTimer}>EDIT</button>
       </div>
     </div>
   )
