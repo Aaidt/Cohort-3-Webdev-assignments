@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import "./Timer.module.css" 
+import "./Timer_module.css" 
 
 
 const Timer = () => {
@@ -25,10 +25,10 @@ const Timer = () => {
 
   return (
     <div className="timerApp">
-      <div className="timerCircle">
-        <p>Time: {Time}</p><br />
+      <div style={{padding: 10}} className="timerDisplay">
+        <p className="timerCircle">Time: {Time}</p><br />
       </div>
-      <button onClick={startTimer}>START</button>
+      <button style={{margin: 10}} onClick={startTimer}>START</button>
       <button onClick={stopTimer}>STOP</button>
     </div>
   )
