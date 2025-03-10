@@ -26,10 +26,14 @@ const Timer = () => {
   return (
     <div className="timerApp">
       <div style={{padding: 10}} className="timerDisplay">
-        <p className="timerCircle">Time: {Time}</p><br />
+        <div className="timerCircle">
+          <p className="timerTime">Time: {Time}</p>
+        </div><br />
       </div>
-      <button style={{margin: 10}} onClick={startTimer}>START</button>
-      <button onClick={stopTimer}>STOP</button>
+      <div className="actionButtons">
+        <button className="actionButton" onClick={startTimer}>START</button>
+        <button className="actionButton" onClick={stopTimer}>STOP</button>
+      </div>
     </div>
   )
 }
