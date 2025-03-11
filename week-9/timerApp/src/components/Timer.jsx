@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react'
 import "./Timer_module.css" 
+import { formatTime, calculateTime } from "../utils/auxiliaryFunctions"
 
 
 const Timer = () => {
 
   const [Time, setTime] = useState(0);
-  const [TimerState, setTimerState] = useState(false);
+  // const [TimerState, setTimerState] = useState(false);
   const intervalRef = useRef(null);
 
   const startTimer = () => {
@@ -14,7 +15,6 @@ const Timer = () => {
       setTime(time => time + 1)
     }, 1000);
   }
-  
 
   const stopTimer = () => {
     clearInterval(intervalRef.current);
@@ -23,7 +23,9 @@ const Timer = () => {
 
   const resetTimer = () => {
     setTime(0);
-  }
+    intervalRef.current = null;
+    clearInterval(intervalRef.current);
+  } 
 
   const editTimer = () => {
     
@@ -33,7 +35,7 @@ const Timer = () => {
     <div className="timerApp">
       <div style={{padding: 10}} className="timerDisplay">
         <div className="timerCircle">
-          <p className="timerTime">Time: {Time}</p>
+          <p className="timerTime">Time: {formatTime}</p>
         </div><br />
       </div>
       <div className="actionButtons">
