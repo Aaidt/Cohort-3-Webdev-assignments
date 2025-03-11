@@ -28,14 +28,22 @@ const Timer = () => {
   } 
 
   const editTimer = () => {
-    
+    const inputHours = prompt("Enter the hour:");
+    const inputMinutes = prompt("Enter the minutes:");
+    const inputSeconds = prompt("Enter the seconds:");
+
+    const newTime = calculateTime(inputHours, inputMinutes, inputSeconds)
+    setTime(newTime);
   }
+
+  const { hours, minutes, seconds } = formatTime(Time);
+ 
 
   return (
     <div className="timerApp">
       <div style={{padding: 10}} className="timerDisplay">
         <div className="timerCircle">
-          <p className="timerTime">Time: {formatTime}</p>
+          <p className="timerTime"> {hours}:{minutes}:{seconds}</p>
         </div><br />
       </div>
       <div className="actionButtons">
