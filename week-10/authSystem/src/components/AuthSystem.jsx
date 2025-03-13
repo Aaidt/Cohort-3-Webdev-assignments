@@ -1,6 +1,8 @@
 import React, { useState, createContext, useContext } from 'react'
 import "../App.css"
 import AppBar from "./AppBar"
+import Home from "./Home";
+
 
 export const AuthContext = createContext(undefined);
 
@@ -34,18 +36,28 @@ const AuthSystem = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-end',
-          padding: '1rem',
+          padding: '1.5rem',
           backgroundColor: '#f0f0f0'
         }}>
-        <input
-          id="use_context_api"
-          type="checkbox"
-          checked={useContextApi}
-          onchange={(e) => setUseContextApi(e.target.checked)} />
-        <label htmlFor="use_context_api">
-          Use Context API: {useContextApi ? "ON" : "OFF"}
-        </label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <label style={{padding: 10}} htmlFor="use_context_api">
+            Use Context API: {useContextApi ? "ON" : "OFF"}
+          </label>
+          <input
+            id="use_context_api"
+            type="checkbox"
+            checked={useContextApi}
+            onChange={(e) => setUseContextApi(e.target.checked)} />
+          </div>
         </div>
+
+        <main style={{ flex: 1, padding: '1rem' }}>
+          {isLoggedIn ? (
+            <Home />
+          ) : (
+            <Login onLogin={Login} />
+          )}
+        </main>
       </div>
     </AuthContext.Provider>
   )
