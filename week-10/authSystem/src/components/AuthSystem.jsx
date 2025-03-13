@@ -24,8 +24,28 @@ const AuthSystem = () => {
 
   return (
     <AuthContext.Provider value={contextValue}>
-      <div>
-        <AppBar />
+      <div sytle={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
+        <AppBar
+          username={username}
+          isLoggedIn={isLoggedIn}
+          Logout={Logout}
+        />
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          padding: '1rem',
+          backgroundColor: '#f0f0f0'
+        }}>
+        <input
+          id="use_context_api"
+          type="checkbox"
+          checked={useContextApi}
+          onchange={(e) => setUseContextApi(e.target.checked)} />
+        <label htmlFor="use_context_api">
+          Use Context API: {useContextApi ? "ON" : "OFF"}
+        </label>
+        </div>
       </div>
     </AuthContext.Provider>
   )
