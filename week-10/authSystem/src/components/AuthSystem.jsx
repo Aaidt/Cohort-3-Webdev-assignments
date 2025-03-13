@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import "../App.css"
+import AppBar from "./AppBar"
+
 
 const AuthSystem = () => {
 
@@ -9,7 +11,7 @@ const AuthSystem = () => {
 
   return (
     <div>
-      
+      <AppBar />
     </div>
   )
 }

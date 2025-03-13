@@ -3,7 +3,7 @@ import './Auth.css';
 import AppBar from "./components/AppBar"
 
 function App() {
-  return <AppBar />;
+  return <AuthSystem />;
 }
 
 export default App;
