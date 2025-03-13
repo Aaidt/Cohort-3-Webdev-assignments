@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from "./AuthSystem";
 
-const AppBar = () => {
+const AppBar = ({ username: propUsername, isLoggedIn: propIsLoggedIn, logout: propLogout}) => {
 
   
   return (
