@@ -19,7 +19,7 @@ const Login = ({ onLogin: propOnLogin }) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <label htmlFor="username" style={{ fontWeight: 'bold' }}>Username</label>
         <input
-          id="username"
+          id="username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter your username"
