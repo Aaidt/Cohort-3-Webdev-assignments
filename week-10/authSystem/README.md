@@ -71,7 +71,11 @@ This project demonstrates two methods for updating the AppBar component with use
 
 ![Image](https://utfs.io/f/A8JZzw0Laf9jwP5plZUDQN0fkp6bvhZM78nmg2zcWSAPE3eR)
 
-
+topics to revise: 
+- lists and keys
+- build some SPA and do some routing
+- Layouts
+- 
 
 
 
