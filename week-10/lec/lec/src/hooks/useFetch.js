@@ -28,7 +28,7 @@ export function useFetch (url){
 
     useEffect(() => {
         getData();
-    }, [])
+    }, [url])
 
     return {
         finalData
