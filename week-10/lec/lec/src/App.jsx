@@ -1,7 +1,34 @@
 import './App.css'
-import React, { useState, createContext, useContext } from "react"
+import React, { useState, useEffect, createContext, useContext } from "react"
+import { usePostTitle } from "./hooks/useFetch";
+
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
+
+function App(){
+
+  const postTitle = usePostTitle();
+
+  return <div>
+    {postTitle}
+  </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //   return <div>
 //     <BrowserRouter>
@@ -75,57 +102,57 @@ import React, { useState, createContext, useContext } from "react"
 //       <button onClick={redirectUser}>Go Back</button>
 //   </div>
 
-const BulbContext = createContext();
+// const BulbContext = createContext();
 
-function BulbProvider({ children }){
+// function BulbProvider({ children }){
   
-  const [BulbOn, setBulbOn] = useState(true);
+//   const [BulbOn, setBulbOn] = useState(true);
   
-  return <BulbContext.Provider value={{
-    BulbOn: BulbOn,
-    setBulbOn: setBulbOn
-  }}>
+//   return <BulbContext.Provider value={{
+//     BulbOn: BulbOn,
+//     setBulbOn: setBulbOn
+//   }}>
 
-    {children}
+//     {children}
 
-  </BulbContext.Provider>
-}
-
-
-function App() {
-
-  return <div>
-    <BulbProvider>
-      <LightBulb />
-    </BulbProvider>
-  </div>
-}
-
-function LightBulb(){
-
-  return <div>
-    <BulbState />
-    <ToggleBulbState />
-  </div>
-}
+//   </BulbContext.Provider>
+// }
 
 
-function BulbState(){
-  const { BulbOn } = useContext(BulbContext)
-  return <div>
-    {BulbOn ? "ON" : "OFF"} 
-  </div>
-}
+// function App() {
 
-function ToggleBulbState(){
-  const { setBulbOn } = useContext(BulbContext)
-  function toggle(){
-    setBulbOn(currentState => !currentState); 
-  }
+//   return <div>
+//     <BulbProvider>
+//       <LightBulb />
+//     </BulbProvider>
+//   </div>
+// }
 
-  return <div>
-    <button onClick={toggle}>Toggle the bulb</button>
-  </div>
-}
+// function LightBulb(){
+
+//   return <div>
+//     <BulbState />
+//     <ToggleBulbState />
+//   </div>
+// }
+
+
+// function BulbState(){
+//   const { BulbOn } = useContext(BulbContext)
+//   return <div>
+//     {BulbOn ? "ON" : "OFF"} 
+//   </div>
+// }
+
+// function ToggleBulbState(){
+//   const { setBulbOn } = useContext(BulbContext)
+//   function toggle(){
+//     setBulbOn(currentState => !currentState); 
+//   }
+
+//   return <div>
+//     <button onClick={toggle}>Toggle the bulb</button>
+//   </div>
+// }
 
 export default App
