@@ -1,17 +1,24 @@
 import './App.css'
 import React, { useState, useEffect, createContext, useContext } from "react"
-import { usePostTitle } from "./hooks/useFetch";
+import { usePostTitle, useFetch } from "./hooks/useFetch";
 
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
 function App(){
 
-  const postTitle = usePostTitle();
+  const { finalData } = useFetch("https://jsonplaceholder.typicode.com/posts/1");
 
   return <div>
-    {postTitle}
+    {JSON.stringify(finalData)}
   </div>
+
+
+  // const postTitle = usePostTitle();
+
+  // return <div>
+  //   {postTitle}
+  // </div>
 }
 
 

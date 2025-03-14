@@ -22,7 +22,7 @@ export function useFetch (url){
 
     async function getData() {
         const response = await fetch(url);
-        const json = response.json;
+        const json = await response.json();
         setFinalData(json);
     }
 
