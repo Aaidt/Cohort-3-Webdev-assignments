@@ -17,7 +17,7 @@ export function usePostTitle(){
     return post.title;
 }
 
-export function useFetch (url){
+export function useFetch (url, retryTime){
     const [finalData, setFinalData] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -32,6 +32,10 @@ export function useFetch (url){
     useEffect(() => {
         getData();
     }, [url])
+
+    useEffect(() => {
+        setInterval(getData, retryTime*1000)
+    }, [])
 
     return {
         finalData,
