@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 
 
-export function usePostTitle(){
+export function usePostTitle() {
     const [post, setPost] = useState({});
 
-    async function getPosts(){
-      const response = await fetch("https://jsonplaceholder.typicode.com/todos/10");
-      const json = await response.json();
-      setPost(json);
+    async function getPosts() {
+        const response = await fetch("https://jsonplaceholder.typicode.com/todos/10");
+        const json = await response.json();
+        setPost(json);
     }
-  
+
     useEffect(() => {
-      getPosts();
+        getPosts();
     }, [])
 
     return post.title;
 }
 
-export function useFetch (url, retryTime){
+export function useFetch(url, retryTime) {
     const [finalData, setFinalData] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ export function useFetch (url, retryTime){
     }, [url])
 
     useEffect(() => {
-        setInterval(getData, retryTime*1000)
+        setInterval(getData, retryTime * 1000)
     }, [])
 
     return {

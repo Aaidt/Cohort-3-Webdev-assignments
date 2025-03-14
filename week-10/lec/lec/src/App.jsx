@@ -1,27 +1,43 @@
 import './App.css'
 import React, { useState, useEffect, createContext, useContext } from "react"
 import { usePostTitle, useFetch } from "./hooks/useFetch";
+import { usePrev } from "./hooks/usePrev";
 
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
-function App(){
-  const [currentPost, setCurrentPost] = useState(1)
+function App() {
 
-  const { finalData, loading } = useFetch("https://jsonplaceholder.typicode.com/posts/" + currentPost, 10);
+  const [state, setState] = useState(0);
+  const prev = usePrev(state);
 
-  if(loading){
-    return <div>
-      Loading...
-    </div>
-  }
+  return (
+    <>
+      <p>The current value is: {state}</p>
+      <button onClick={() => setState(state + 1)}>Click Me</button>
+      <p>The previous value is: {prev}</p>
+    </>
+  )
 
-  return <div>
-    <button onClick={() => setCurrentPost(1)}>1</button>
-    <button onClick={() => setCurrentPost(2)}>2</button>
-    <button onClick={() => setCurrentPost(3)}>3</button>
-    {JSON.stringify(finalData)}
-  </div>
+
+
+
+  // const [currentPost, setCurrentPost] = useState(1)
+
+  // const { finalData, loading } = useFetch("https://jsonplaceholder.typicode.com/posts/" + currentPost, 10);
+
+  // if (loading) {
+  //   return <div>
+  //     Loading...
+  //   </div>
+  // }
+
+  // return <div>
+  //   <button onClick={() => setCurrentPost(1)}>1</button>
+  //   <button onClick={() => setCurrentPost(2)}>2</button>
+  //   <button onClick={() => setCurrentPost(3)}>3</button>
+  //   {JSON.stringify(finalData)}
+  // </div>
 
 
   // const postTitle = usePostTitle();
@@ -49,7 +65,7 @@ function App(){
 
 //   return <div>
 //     <BrowserRouter>
-      
+
 //       <Routes>
 //         <Route path="/" element={<Layout />}>
 //           <Route path="/neet/online-coaching-class-11" element={<Class11Program />} />
@@ -68,7 +84,7 @@ function App(){
 //     <div>
 //       <Outlet />
 //     </div>
-    
+
 //     Footer
 //   </div>
 // }
@@ -122,9 +138,9 @@ function App(){
 // const BulbContext = createContext();
 
 // function BulbProvider({ children }){
-  
+
 //   const [BulbOn, setBulbOn] = useState(true);
-  
+
 //   return <BulbContext.Provider value={{
 //     BulbOn: BulbOn,
 //     setBulbOn: setBulbOn
