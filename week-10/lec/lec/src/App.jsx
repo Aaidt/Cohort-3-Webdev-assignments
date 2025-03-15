@@ -6,33 +6,58 @@ import { usePrev } from "./hooks/usePrev";
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
-function useDebounce(originalFn) {
-  const currentClock = useRef();
+// function useDebounce(originalFn) {
+//   const currentClock = useRef();
 
-  const fn = () => {
-    clearTimeout(currentClock.current);
-    currentClock.current = setTimeout(originalFn, 200);
-  }
+//   const fn = () => {
+//     clearTimeout(currentClock.current);
+//     currentClock.current = setTimeout(originalFn, 200);
+//   }
 
-  return fn
+//   return fn
+// }
+
+const useDebounce = (value, delay) => {
+  const [debouncedVal, setDebouncedVal] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedVal(value)
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    }
+  }, [value, delay])
+
+  return debouncedVal
 }
-
-
 
 function App() {
 
   // const [state, setState] = useState(0);
   // const prev = usePrev(state);
 
-  function sendDataToBackend(){
-    fetch("api.amazon.com/search/");
+  const [inputVal, setInputVal] = useState("");
+  const debouncedVal = useDebounce(inputVal, 200);
+
+  // function sendDataToBackend(){
+  //   fetch("api.amazon.com/search/");
+  // }
+
+  // const debouncedFn = useDebounce(sendDataToBackend)
+
+  function change(e){
+    setInputVal(e.target.value);
   }
 
-  const debouncedFn = useDebounce(sendDataToBackend)
+  useEffect(() => {
+    console.log("expensive operation happened");
+  }, [debouncedVal])
 
   return (
     <>
-      <input type="text" onChange={debouncedFn}></input>
+      <input type="text" onChange={change}></input>
       {/* <p>The current value is: {state}</p>
       <button onClick={() => setState(state + 1)}>Click Me</button>
       <p>The previous value is: {prev}</p> */}
@@ -69,16 +94,7 @@ function App() {
 
 
 
-
-
-
-
-
-
-
-
-
-
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 
 
