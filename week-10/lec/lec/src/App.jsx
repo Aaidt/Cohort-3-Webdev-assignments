@@ -1,21 +1,41 @@
 import './App.css'
-import React, { useState, useEffect, createContext, useContext } from "react"
+import React, { useState, useEffect, useRef, createContext, useContext } from "react"
 import { usePostTitle, useFetch } from "./hooks/useFetch";
 import { usePrev } from "./hooks/usePrev";
 
 // import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 // import { useRef } from "react"
 
+function useDebounce(originalFn) {
+  const currentClock = useRef();
+
+  const fn = () => {
+    clearTimeout(currentClock.current);
+    currentClock.current = setTimeout(originalFn, 200);
+  }
+
+  return fn
+}
+
+
+
 function App() {
 
-  const [state, setState] = useState(0);
-  const prev = usePrev(state);
+  // const [state, setState] = useState(0);
+  // const prev = usePrev(state);
+
+  function sendDataToBackend(){
+    fetch("api.amazon.com/search/");
+  }
+
+  const debouncedFn = useDebounce(sendDataToBackend)
 
   return (
     <>
-      <p>The current value is: {state}</p>
+      <input type="text" onChange={debouncedFn}></input>
+      {/* <p>The current value is: {state}</p>
       <button onClick={() => setState(state + 1)}>Click Me</button>
-      <p>The previous value is: {prev}</p>
+      <p>The previous value is: {prev}</p> */}
     </>
   )
 
