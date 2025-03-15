@@ -1,52 +1,65 @@
 import React, { createContext, useContext, useState } from "react";
-import { RecoilRoot, atom } from "recoil";
+import { useSetRecoilState, useRecoilValue, RecoilRoot, atom } from "recoil";
+import { counterAtom } from "./store/atom/counter.js"
 
+// const CountContext = createContext();
 
-const CountContext = createContext();
+// const CountContextProvider = ({ children }) => {
+//   const [count, setCount] = useState(0);
+//   return (
+//     <CountContext.Provider value={{ count, setCount }}>
+//       {children}
+//     </CountContext.Provider>
+//   )
 
-const CountContextProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
+// }
+
+function Counter() {
   return (
-    <CountContext.Provider value={{ count, setCount }}>
-      {children}
-    </CountContext.Provider>
-  )
-
-}
-
-function Parent() {
-  return (
-    <RecoilRoot>
+    <div>
+      <Count />
       <Increase />
       <Decrease />
-      <Count />
-    </RecoilRoot>
+    </div>
   )
 }
 
-function Increase() {
-  const { count, setCount } = useContext(CountContext);
+function Count() {
+  // const { count } = useContext(CountContext);
+  const count = useRecoilValue(counterAtom)
+  return <div>{count}</div>
+}
 
-  return <button onClick={() => setCount(count + 1)}>Increase</button>
+
+function Increase() {
+  // const { count, setCount } = useContext(CountContext);
+  const setCount = useSetRecoilState(counterAtom);
+
+  function Increase() {
+    setCount(c => c + 1)
+  }
+
+  return <button onClick={Increase}>Increase</button>
 }
 
 
 function Decrease() {
-  const { count, setCount } = useContext(CountContext);
+  // const { count, setCount } = useContext(CountContext);
+  const setCount = useSetRecoilState(counterAtom);
 
-  return <button onClick={() => setCount(count - 1)}>Decrease</button>
-}
-
-function Count() {
-  const { count } = useContext(CountContext);
-  return <p>The count is: {count}</p>
+  function Decrease() {
+    setCount(c => c - 1);
+  }
+  return <button onClick={Decrease} >Decrease</button>
 }
 
 
 function App() {
   return (
     <div>
-      <Parent />
+      <RecoilRoot>
+        <Counter />
+      </RecoilRoot>
     </div>
   )
 }
