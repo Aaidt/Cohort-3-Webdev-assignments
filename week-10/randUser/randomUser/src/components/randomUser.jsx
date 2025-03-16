@@ -3,14 +3,15 @@ import axios from "axios";
 
 export const RandomUsers = () => {
     const [user, setUser] = useState([])
-    const [fetchTrigger, setFetchTrigger] = useState(false);
+    const [fetchCount, setFetchCount] = useState(0);
+    const [inputNo, setInputNo] = useState(0);
 
     useEffect(() => {
-        if (fetchTrigger === false) return;
+        if (fetchCount === false) return;
 
         async function fetchUsers() {
             let fetchedUsers = [];
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < inputNo; i++) {
                 const response = await axios.get("https://randomuser.me/api");
                 const data = response.data.results[0];
                 // const name = `${data.name.title} ${data.name.first} ${data.name.last}`
@@ -22,30 +23,38 @@ export const RandomUsers = () => {
                     email: data.email
                 });
             }
-            console.log(fetchedUsers);
+            // console.log(fetchedUsers);
             setUser(fetchedUsers);
         }
         fetchUsers();
-    }, [fetchTrigger])
+    }, [fetchCount])
+
+    const handleChange = (event) => {
+        setInputNo(Number(event.target.value));
+    }
+
 
     return (
-        <div style={styles.container}>
-            <div style={styles.list}>
-                {user.length > 0 ? (
-                    user.map((user) => (
-                        <div key={user.email} style={styles.userCard}>
-                            <img style={{padding: 10}} src={user.img} alt="image" />
-                            {user.name}
-                        </div>
-                    ))
-                ) : (
-                    <p style={styles.noUsers}>No users fetched.</p>
-                )}
+        <>
+            <input type="number" onChange={handleChange} placeholder="Enter the number of users required:" />
+            <div style={styles.container}>
+                <div style={styles.list}>
+                    {user.length > 0 ? (
+                        user.map((user) => (
+                            <div key={user.email} style={styles.userCard}>
+                                <img style={{ padding: 10 }} src={user.img} alt="image" />
+                                {user.name}
+                            </div>
+                        ))
+                    ) : (
+                        <p style={styles.noUsers}>No users fetched.</p>
+                    )}
+                </div>
+                <button style={styles.button} onClick={() => setFetchCount(prev => prev + 1)}>
+                    Fetch Users
+                </button>
             </div>
-            <button style={styles.button} onClick={() => setFetchTrigger(true)}>
-                Fetch Users
-            </button>
-        </div>
+        </>
     )
 }
 
@@ -54,11 +63,16 @@ const styles = {
         textAlign: "center",
         padding: "30px",
     },
+    input: {
+        padding: "8px",
+        fontSize: "16px",
+        margin: "10px",
+        borderRadius: "5px",
+        border: "1px solid #ccc",
+    },
     button: {
         padding: "10px 20px",
         fontSize: "16px",
-        marginTop: "10px",
-        marginBottom: "20px",
         cursor: "pointer",
         backgroundColor: "#007bff",
         color: "white",
@@ -74,16 +88,23 @@ const styles = {
     userCard: {
         display: "flex",
         flexDirection: "column",
-        padding: "10px 15px",
-        marginBottom: "5px",
+        alignItems: "center",
+        padding: "10px",
         border: "1px solid #ccc",
         borderRadius: "5px",
         backgroundColor: "#f8f9fa",
         boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
+    },
+    image: {
+        width: "100px",
+        height: "100px",
+        borderRadius: "50%",
+        padding: "10px",
     },
     noUsers: {
         fontSize: "18px",
         color: "#777",
     }
 };
+
 export default RandomUsers
