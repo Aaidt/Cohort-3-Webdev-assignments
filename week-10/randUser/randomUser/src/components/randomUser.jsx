@@ -13,9 +13,15 @@ export const RandomUsers = () => {
             for (let i = 0; i < 10; i++) {
                 const response = await axios.get("https://randomuser.me/api");
                 const data = response.data.results[0];
-                const name = `${data.name.title} ${data.name.first} ${data.name.last}`
-                fetchedUsers.push(name);
+                // const name = `${data.name.title} ${data.name.first} ${data.name.last}`
+                // const email = data.email
+
+                fetchedUsers.push({
+                    name: `${data.name.title} ${data.name.first} ${data.name.last}`,
+                    email: data.email
+                });
             }
+            console.log(fetchedUsers);
             setUser(fetchedUsers);
         }
         fetchUsers();
@@ -23,16 +29,15 @@ export const RandomUsers = () => {
 
     return (
         <div style={styles.container}>
-
             <div style={styles.list}>
                 {user.length > 0 ? (
-                    user.map((user, index) => (
-                        <div key={index} style={styles.userCard}>
-                            {user}
+                    user.map((user) => (
+                        <div key={user.email} style={styles.userCard}>
+                            {user.name}
                         </div>
                     ))
                 ) : (
-                    <p style={styles.noUsers}>No users fetched yet.</p>
+                    <p style={styles.noUsers}>No users fetched.</p>
                 )}
             </div>
             <button style={styles.button} onClick={() => setFetchTrigger(true)}>
