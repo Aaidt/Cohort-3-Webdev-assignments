@@ -4,7 +4,7 @@ import axios from "axios";
 export const RandomUsers = () => {
     const [user, setUser] = useState([])
     const [fetchTrigger, setFetchTrigger] = useState(false);
-    
+
     useEffect(() => {
         if (fetchTrigger === false) return;
 
@@ -22,15 +22,58 @@ export const RandomUsers = () => {
     }, [fetchTrigger])
 
     return (
-        <div>
-            <button onClick={() => setFetchTrigger(true)}>Load Users</button>
-            {user.length > 0 ? (    
-                user.map((u, index) => (
-                    <div key={index}>{u}</div>
-                ))
-            ) : (
-                <p>No users fetched yet...</p>
-            )}
+        <div style={styles.container}>
+
+            <div style={styles.list}>
+                {user.length > 0 ? (
+                    user.map((user, index) => (
+                        <div key={index} style={styles.userCard}>
+                            {user}
+                        </div>
+                    ))
+                ) : (
+                    <p style={styles.noUsers}>No users fetched yet.</p>
+                )}
+            </div>
+            <button style={styles.button} onClick={() => setFetchTrigger(true)}>
+                Fetch Users
+            </button>
         </div>
     )
 }
+
+const styles = {
+    container: {
+        textAlign: "center",
+        padding: "30px",
+    },
+    button: {
+        padding: "10px 20px",
+        fontSize: "16px",
+        marginTop: "10px",
+        marginBottom: "20px",
+        cursor: "pointer",
+        backgroundColor: "#007bff",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+    },
+    list: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: "10px",
+    },
+    userCard: {
+        padding: "10px 15px",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        backgroundColor: "#f8f9fa",
+        boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
+    },
+    noUsers: {
+        fontSize: "18px",
+        color: "#777",
+    }
+};
+export default RandomUsers
