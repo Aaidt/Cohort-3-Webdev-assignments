@@ -3,7 +3,11 @@ import axios from "axios";
 
 export const RandomUsers = () => {
     const [user, setUser] = useState([])
+    const [fetchTrigger, setFetchTrigger] = useState(false);
+    
     useEffect(() => {
+        if (fetchTrigger === false) return;
+
         async function fetchUsers() {
             let fetchedUsers = [];
             for (let i = 0; i < 10; i++) {
@@ -15,16 +19,17 @@ export const RandomUsers = () => {
             setUser(fetchedUsers);
         }
         fetchUsers();
-    }, [])
+    }, [fetchTrigger])
 
     return (
         <div>
+            <button onClick={() => setFetchTrigger(true)}>Load Users</button>
             {user.length > 0 ? (    
                 user.map((u, index) => (
                     <div key={index}>{u}</div>
                 ))
             ) : (
-                <p>Loading....</p>
+                <p>No users fetched yet...</p>
             )}
         </div>
     )
