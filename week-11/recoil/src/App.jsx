@@ -134,7 +134,7 @@ function MainApp() {
   const networkNotificationCount = useRecoilValue(networkAtom);
   const jobsAtomCount = useRecoilValue(jobsAtom);
   const notificationsAtomCount = useRecoilValue(notificationsAtom);
-  const [messagingAtomCount, useMessagingAtomCount] = useRecoilState(messagingAtom);
+  const [messagingAtomCount, setMessagingAtomCount] = useRecoilState(messagingAtom);
   const totalNotficationCount = useRecoilValue(totalnotificationSelector);
   return (
     <>
