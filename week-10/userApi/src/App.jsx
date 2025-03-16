@@ -5,6 +5,7 @@ function App() {
   return (
     <>
       <RandomUser />
+      <Pagination count={10} />
     </>
   )
 }
