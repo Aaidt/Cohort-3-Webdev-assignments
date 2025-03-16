@@ -18,6 +18,7 @@ export const RandomUsers = () => {
 
                 fetchedUsers.push({
                     name: `${data.name.title} ${data.name.first} ${data.name.last}`,
+                    img: data.picture.large,
                     email: data.email
                 });
             }
@@ -33,6 +34,7 @@ export const RandomUsers = () => {
                 {user.length > 0 ? (
                     user.map((user) => (
                         <div key={user.email} style={styles.userCard}>
+                            <img style={{padding: 10}} src={user.img} alt="image" />
                             {user.name}
                         </div>
                     ))
@@ -70,7 +72,10 @@ const styles = {
         gap: "10px",
     },
     userCard: {
+        display: "flex",
+        flexDirection: "column",
         padding: "10px 15px",
+        marginBottom: "5px",
         border: "1px solid #ccc",
         borderRadius: "5px",
         backgroundColor: "#f8f9fa",
