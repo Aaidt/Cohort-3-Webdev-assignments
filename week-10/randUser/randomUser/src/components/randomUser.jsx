@@ -5,16 +5,18 @@ export const RandomUsers = () => {
     const [user, setUser] = useState([])
     const [fetchCount, setFetchCount] = useState(0);
     const [inputNo, setInputNo] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (fetchCount === false) return;
 
         async function fetchUsers() {
+            setLoading(true);
             let fetchedUsers = [];
             for (let i = 0; i < inputNo; i++) {
                 const response = await axios.get("https://randomuser.me/api");
                 const data = response.data.results[0];
-                // const name = `${data.name.title} ${data.name.first} ${data.name.last}`
+                // const name = `${data.name.title} ${data.name.first} ${data.name.last}`   
                 // const email = data.email
 
                 fetchedUsers.push({
@@ -25,6 +27,7 @@ export const RandomUsers = () => {
             }
             // console.log(fetchedUsers);
             setUser(fetchedUsers);
+            setLoading(false);
         }
         fetchUsers();
     }, [fetchCount])
@@ -39,16 +42,19 @@ export const RandomUsers = () => {
             <input type="number" onChange={handleChange} placeholder="Enter the number of users required:" />
             <div style={styles.container}>
                 <div style={styles.list}>
-                    {user.length > 0 ? (
-                        user.map((user) => (
-                            <div key={user.email} style={styles.userCard}>
-                                <img style={{ padding: 10 }} src={user.img} alt="image" />
-                                {user.name}
-                            </div>
-                        ))
-                    ) : (
-                        <p style={styles.noUsers}>No users fetched.</p>
+                    {loading ? <p>Loading...</p> : (
+                        user.length > 0 ? (
+                            user.map((user) => (
+                                <div key={user.email} style={styles.userCard}>
+                                    <img style={{ padding: 10 }} src={user.img} alt="image" />
+                                    {user.name}
+                                </div>
+                            ))
+                        ) : (
+                            <p style={styles.noUsers}>No users fetched.</p>
+                        )
                     )}
+                    
                 </div>
                 <button style={styles.button} onClick={() => setFetchCount(prev => prev + 1)}>
                     Fetch Users
@@ -72,6 +78,7 @@ const styles = {
     },
     button: {
         padding: "10px 20px",
+        marginTop: "20px",
         fontSize: "16px",
         cursor: "pointer",
         backgroundColor: "#007bff",
@@ -89,7 +96,8 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "10px",
+        padding: "15px",
+        margin: "10px",
         border: "1px solid #ccc",
         borderRadius: "5px",
         backgroundColor: "#f8f9fa",
