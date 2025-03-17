@@ -3,17 +3,17 @@ import axios from "axios";
 
 export const RandomUsers = () => {
     const [user, setUser] = useState([])
-    const [fetchCount, setFetchCount] = useState(0);
-    const [inputNo, setInputNo] = useState(0);
+    // const [fetchCount, setFetchCount] = useState(0);
+    // const [inputNo, setInputNo] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(0)
 
     useEffect(() => {
-        if (fetchCount === 0) return;
-
+        if (page === 0) return;
         async function fetchUsers() {
             setLoading(true);
             try{
-                const response = await axios.get(`https://randomuser.me/api?results=${inputNo}`);
+                const response = await axios.get(`https://randomuser.me/api?page=${page}&results=5`);
                 setUser((prevUsers) => [...prevUsers, ...response.data.results]);   
             }catch(err){
                 console.log(err);
@@ -21,19 +21,19 @@ export const RandomUsers = () => {
             setLoading(false);
         }
         fetchUsers();
-    }, [fetchCount])
+    }, [page])
 
-    const handleChange = (event) => {
-        setInputNo(Number(event.target.value));
-    }
+    // const handleChange = (event) => {
+    //     setInputNo(Number(event.target.value));
+    // }
 
     return (
         <>
-            <input
+            {/* <input
                 type="number"
                 onChange={handleChange}
                 placeholder="Enter the number of users required:"
-            />
+            /> */}
 
             <div style={styles.container}>
                 <div style={styles.list}>
@@ -42,7 +42,7 @@ export const RandomUsers = () => {
                             user.map((user, index) => (
                                 <div key={index} style={styles.userCard}>
                                     <img style={{ padding: 10 }} src={user.picture.large} alt={user.title} />
-                                    {user.title}{user.first}{user.last}
+                                    {user.name.title}{user.name.first}{user.name.last}
                                 </div>
                             ))
                         ) : (
@@ -51,7 +51,7 @@ export const RandomUsers = () => {
                     )}
 
                 </div>
-                <button style={styles.button} onClick={() => setFetchCount(prev => prev + 1)}>
+                <button style={styles.button} onClick={() => setPage((prev) => prev + 1)}>
                     Fetch Users
                 </button>
             </div>
