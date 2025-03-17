@@ -1,3 +1,4 @@
+// -------------------- CUSTOM HOOKS ------------------------------------------
 import './App.css'
 import React, { useState, useEffect, useRef, createContext, useContext } from "react"
 import { usePostTitle, useFetch } from "./hooks/useFetch";
@@ -94,7 +95,7 @@ function App() {
 
 export default App
 
-/* -------------------------------------------------------------------------------------------- */
+/* -------------------------------- SPA AND ROUTING ------------------------------------------------------------ */
 
 
 
