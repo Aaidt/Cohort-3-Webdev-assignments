@@ -12,13 +12,13 @@ export const Navbar = () => {
                 />
             </Link><br />
             <Link to="/AmazonCart">
-                <span style={{ marginRight: 0 }}>
+                <div style={{ marginRight: 0 }}>
                     <img
                         src="https://imgs.search.brave.com/Nlp7qL_SsoL8kNh1Q4pP4n2Tr2Tnqytvm6TIjyVG9Uk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzk3LzAwLzA1/LzM2MF9GXzk3MDAw/NTUyX2Q4UndpWkFu/RmV3em5pc1FwaFB0/anl4eFJOQUFaUTky/LmpwZw"
-                        style={{ height: "10vh", width: "5vw" }}
+                        style={{ height: "10vh", width: "5vw" }}    
                     />
 
-                </span>
+                </div>
             </Link>
         </div>
     )
