@@ -2,8 +2,8 @@ import React from "react";
 
 export const WishList = () => {
     return (
-        <>
-        Wishlist
-        </>
+        <div style={{textAlign: "center"}}>
+            Wishlist
+        </div>
     )
 } 

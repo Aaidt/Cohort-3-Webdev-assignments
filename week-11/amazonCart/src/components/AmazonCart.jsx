@@ -2,8 +2,8 @@ import React from "react";
 
 export const AmazonCart = () => {
     return (
-        <>
-        AmazonCart
-        </>
+        <div style={{textAlign: "center "}}>
+            AmazonCart
+        </div>
     )
 } 
