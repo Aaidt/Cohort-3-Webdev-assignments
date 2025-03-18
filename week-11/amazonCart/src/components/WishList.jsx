@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { WishListItemAtom } from "../store/wishItemsState"
+// import "./WishListStyles.module.js"
 
 export const WishList = () => {
 
@@ -12,8 +13,13 @@ export const WishList = () => {
             <div>
                 {items.map((product) => {
                     return (
-                        <div key={product.id}>
-                            {product.title}
+                        <div
+                            // style={WishList.module.css}
+                            key={product.id}
+                        >
+                            <img style={{height:"15vh", width:"10vw"}} src={product.image} />
+                            {product.title}<br />
+                            {product.price}
                         </div>
                     )
                 })}

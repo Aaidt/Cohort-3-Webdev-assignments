@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { cartItemsState } from '../store/cartItemsState';
 import { cartTotalSelector } from '../store/cartTotalSelector';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { styles } from "./WishListStyles.module.js";
+import { styles } from "../../src/components/WishListStyles.module.js";
 import { wishItemsState } from '../store/wishItemsState.js';
 import { ProductModal, Header, Sidebar } from "./"
 

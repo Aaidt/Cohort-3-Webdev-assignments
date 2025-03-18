@@ -1,4 +1,4 @@
-import { styles } from './WishListStyles.module'
+import { styles } from '../../src/components/WishListStyles.module'
 
 const Sidebar = () => {
     return (
