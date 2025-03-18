@@ -2,7 +2,7 @@ import React from "react"
 import { Navbar } from "./components/Navbar"
 import { WishList } from "./components/WishList"
 import { AmazonCart } from "./components/AmazonCart"
-import { BrowserRouter, Routes, Route, Layout, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -24,9 +24,7 @@ function App() {
 const Layout = () => {
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
+      <Navbar />
       <main>
         <Outlet />
       </main>
