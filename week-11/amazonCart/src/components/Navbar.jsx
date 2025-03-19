@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-// import "../Navbar.module.css"
+import { cartItemsState } from "../store/cartItemsState";
+import { useRecoilValue } from "recoil";
 
 export const Navbar = () => {
+
+    const cartItems = useRecoilValue(cartItemsState)
+
+
     return (
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <Link to="/WishList">
@@ -13,6 +18,7 @@ export const Navbar = () => {
             </Link><br />
             <Link to="/AmazonCart">
                 <div style={{ marginRight: 0 }}>
+                    <p style={{marginRight: 0}}>{cartItems.length}</p>
                     <img
                         src="https://imgs.search.brave.com/Nlp7qL_SsoL8kNh1Q4pP4n2Tr2Tnqytvm6TIjyVG9Uk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzk3LzAwLzA1/LzM2MF9GXzk3MDAw/NTUyX2Q4UndpWkFu/RmV3em5pc1FwaFB0/anl4eFJOQUFaUTky/LmpwZw"
                         style={{ height: "10vh", width: "5vw" }}    
