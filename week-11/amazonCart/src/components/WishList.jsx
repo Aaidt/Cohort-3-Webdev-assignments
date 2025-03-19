@@ -4,17 +4,17 @@ import { WishListItemAtom } from "../store/wishItemsState"
 import { cartItemsState } from "../store/cartItemsState"
 
 
-export const WishList = (product) => {
+export const WishList = () => {
 
     const [wishListItems, setWishListItems] = useRecoilState(WishListItemAtom)
     const [cartItems, setCartItems] = useRecoilState(cartItemsState) 
 
-    const addToCart = () => {
+    const addToCart = (product) => {
         const isAlreadyAdded = cartItems.some(item => item.id === product.id)
         if(!isAlreadyAdded){
             setCartItems([...cartItems, product]);
         }
-        setWishListItems(wishListItems.filter(item => item.id == product.id))
+        setWishListItems(wishListItems.filter(item => item.id !== product.id))
     }
 
 
