@@ -7,9 +7,13 @@ export const WishList = () => {
 
     const [items, setItems] = useRecoilState(WishListItemAtom)
 
-    // console.log(items)
-    const Item = () => {
-        return <div>
+    const addToCart = () => {
+        
+    }
+
+
+    return (
+        <div>
             <div
                 style={{
                     justifyItems: "center",
@@ -37,10 +41,12 @@ export const WishList = () => {
                             <img style={{ height: "15vh", width: "10vw" }} src={product.image} />
                             {product.title}<br />
                             Price: Rs.{product.price}
-                            <button style={{
-                                borderRadius: 5,
-                                margin: 10
-                            }}>
+                            <button
+                                onClick={addToCart}
+                                style={{
+                                    borderRadius: 5,
+                                    margin: 10
+                                }}>
                                 Add to Cart
                             </button>
                         </div>
@@ -48,14 +54,6 @@ export const WishList = () => {
                 })}
             </div>
         </div>
-    }
+)
 
-
-
-    return (
-
-        <div style={{ textAlign: "center" }}>
-            <Item />
-        </div>
-    )
-} 
+}
