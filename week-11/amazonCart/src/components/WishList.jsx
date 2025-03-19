@@ -10,7 +10,7 @@ export const WishList = (product) => {
     const [cartItems, setCartItems] = useRecoilState(cartItemsState) 
 
     const addToCart = () => {
-        const isAlreadyAdded = cartItems.some(cartItems.id == product.id)
+        const isAlreadyAdded = cartItems.some(item => item.id === product.id)
         if(!isAlreadyAdded){
             setCartItems([...cartItems, product]);
         }
