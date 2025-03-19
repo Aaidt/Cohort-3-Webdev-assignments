@@ -9,11 +9,11 @@ export const AmazonCart = () => {
 
 
     return (
-        <div style={{ textAlign: "center " }}>
+        <div>
             {cartItems.length == 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
-                <div>
+                <div style={{ display: "flex", flexDirection: "row" }}>
                     {cartItems.map((product) => {
                         return (
                             <div
