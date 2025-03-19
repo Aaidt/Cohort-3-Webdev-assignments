@@ -1,14 +1,20 @@
 import React from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { WishListItemAtom } from "../store/wishItemsState"
+import { cartItemsState } from "../store/cartItemsState"
 
 
-export const WishList = () => {
+export const WishList = (product) => {
 
-    const [items, setItems] = useRecoilState(WishListItemAtom)
+    const [wishListItems, setWishListItems] = useRecoilState(WishListItemAtom)
+    const [cartItems, setCartItems] = useRecoilState(cartItemsState) 
 
     const addToCart = () => {
-
+        const isAlreadyAdded = cartItems.some(cartItems.id == product.id)
+        if(!isAlreadyAdded){
+            setCartItems([...cartItems, product]);
+        }
+        setWishListItems(wishListItems.filter(item => item.id == product.id))
     }
 
 
@@ -22,7 +28,7 @@ export const WishList = () => {
                     padding: 10
                 }}
             >
-                {items.map((product) => {
+                {wishListItems.map((product) => {
                     return (
                         <div
                             style={{
@@ -39,10 +45,10 @@ export const WishList = () => {
                             key={product.id}
                         >
                             <img style={{ height: "15vh", width: "10vw" }} src={product.image} />
-                            {product.title}<br />
-                            Price: Rs.{product.price}
+                            <b style={{padding: 15}}>{product.title}<br />
+                            Price: Rs.{product.price}</b>
                             <button
-                                onClick={addToCart}
+                                onClick={() => addToCart(product)}
                                 style={{
                                     borderRadius: 5,
                                     margin: 10
