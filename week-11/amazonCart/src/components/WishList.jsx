@@ -1,14 +1,14 @@
 import React from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { WishListItemAtom } from "../store/wishItemsState"
-// import "./WishListStyles.module.js"
+
 
 export const WishList = () => {
 
     const [items, setItems] = useRecoilState(WishListItemAtom)
 
     const addToCart = () => {
-        
+
     }
 
 
