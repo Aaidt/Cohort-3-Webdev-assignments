@@ -31,6 +31,7 @@ export const WishList = () => {
                         padding: 10
                     }}
                 >
+                    <b>WISHLIST</b>
                     {wishListItems.map((product) => {
                         return (
                             <div

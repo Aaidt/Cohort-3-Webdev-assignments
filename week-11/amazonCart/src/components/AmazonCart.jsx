@@ -1,19 +1,26 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { cartItemsState } from "../store/cartItemsState"
+import { WishListItemAtom } from "../store/wishItemsState"
 
 export const AmazonCart = () => {
 
     const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+    const [wishListItems, setWishListItems] = useRecoilState(WishListItemAtom)
 
-
+    const deleteItem = (product) => {
+        setWishListItems([...wishListItems, product]);
+        setCartItems(cartItems.filter(items => items.id !== product.id))
+    }
 
     return (
         <div>
             {cartItems.length == 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
+
                 <div style={{ display: "flex", flexDirection: "row" }}>
+                    <b>CART</b>
                     {cartItems.map((product) => {
                         return (
                             <div
@@ -33,6 +40,7 @@ export const AmazonCart = () => {
                                 <img style={{ height: "15vh", width: "10vw" }} src={product.image} />
                                 <b style={{ padding: 15 }}>{product.title}<br />
                                     Price: Rs.{product.price}</b>
+                                <button onClick={() => deleteItem(product)}>Delete</button>
 
                             </div>
                         )
