@@ -48,7 +48,10 @@ export const AmazonCart = () => {
                             </div>
                         )
                     })}
-                    <div>Total: {cartTotalPrice}</div>
+                    <div style={{ padding: 10, margin: 10 }}>
+                        <b style={{ padding: 10, margin: 10 }}>Total: {cartTotalPrice}</b><br />
+                        <button>Proceed to buy</button>
+                    </div>
                 </div>
             )}
         </div>
