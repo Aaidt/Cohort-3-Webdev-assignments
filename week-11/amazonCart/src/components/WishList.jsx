@@ -14,7 +14,7 @@ export const WishList = () => {
         if (!isAlreadyAdded) {
             setCartItems([...cartItems, product]);
         }
-        setWishListItems(wishListItems.filter(item => item.id !== product.id))
+        // setWishListItems(wishListItems.filter(item => item.id !== product.id))
     }
 
 
