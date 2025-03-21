@@ -14,7 +14,7 @@ export const Otp = ({ number }) => {
                 }
                 ref.current[index + 1].focus();
             }} goBack={() => {
-                if (index = 0) {
+                if (index == 0) {
                     return
                 }
                 ref.current[index - 1].focus();
