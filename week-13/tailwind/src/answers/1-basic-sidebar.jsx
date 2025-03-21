@@ -1,11 +1,11 @@
 export function SideBar(){
     return <div className="flex">
-        <div className="bg-blue-200 h-screen w-64 hidden md:block">
+        <div className="transition-all delay-500 hover:bg-blue-200 bg-red-200 h-screen md:w-64 w-0 ">
             Sidebar
         </div>
 
-        <div className="bg-red-200 h-screen w-screen">
+        <div className="bg-green-200 h-screen w-screen">
             Content
         </div>
-    </div>
+    </div>  
 }
