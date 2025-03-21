@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      darkMode: "selector",
       colors: {
         blue: {
           200: "#7589a0",

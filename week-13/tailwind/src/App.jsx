@@ -6,12 +6,13 @@ import { SideBar } from "./answers/1-basic-sidebar"
 function App() {
 
   return (
-    <div className="h-screen bg-white dark:bg-black">
-      {/* <br /><br /><br />
-      <Otp number={10}/> */}
-      {/* <SideBar /> */}
+    <div className="h-screen bg-white dark:bg-blue-900 text-black dark:text-white">
 
-          <h1>Toggle themes</h1>
+      <button onClick={() => {
+        document.querySelector("html").classList.toggle("dark");
+      } 
+
+      }>Toggle themes</button>
 
     </div>
   )
