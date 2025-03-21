@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import { Button } from "./components/button"
-import { Input } from "./components/input"
 import { Otp } from "./components/Otp"
 import { SideBar } from "./answers/1-basic-sidebar"
 
 function App() {
 
   return (
-    <div>
+    <div className="h-screen bg-white dark:bg-black">
       {/* <br /><br /><br />
       <Otp number={10}/> */}
-      <SideBar />
+      {/* <SideBar /> */}
+
+          <h1>Toggle themes</h1>
 
     </div>
   )
