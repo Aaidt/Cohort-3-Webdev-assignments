@@ -10,10 +10,10 @@ export const NavBar = () => {
                 <span>Bookmark</span>
             </div>
             <div className="flex justify-around cursor-pointer">
-                <span className="px-4 hover:text-red-300 ">Features</span>
-                <span className="px-4 hover:text-red-300 ">Downloads</span>
-                <span className="px-4 hover:text-red-300 ">FAQ's</span>
-                <button className="bg-red-400 font-bold rounded-xl hover:text-red-300 hover:border-red-300 hover:bg-white -translate-y-3 px-6 py-3">Login</button>
+                <span className="px-4 text-gray-500 hover:text-red-300 ">Features</span>
+                <span className="px-4 text-gray-500 hover:text-red-300 ">Downloads</span>
+                <span className="px-4 text-gray-500 hover:text-red-300 ">FAQ's</span>
+                <button className="bg-red-400 font-bold rounded-xl hover:text-red-400 outline-black hover:outline-red-300 hover:bg-gray-200 -translate-y-3 px-6 py-3">Login</button>
             </div>
 
         </div>
