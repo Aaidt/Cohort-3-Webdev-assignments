@@ -9,11 +9,11 @@ export const NavBar = () => {
                 </svg>
                 <span>Bookmark</span>
             </div>
-            <div className="flex justify-around">
-                <span className="px-4">Features</span>
-                <span className="px-4">Downloads</span>
-                <span className="px-4">FAQ's</span>
-                <button className="bg-red-400 font-bold rounded-xl -translate-y-3 px-6 py-3">Login</button>
+            <div className="flex justify-around cursor-pointer">
+                <span className="px-4 hover:text-red-300 ">Features</span>
+                <span className="px-4 hover:text-red-300 ">Downloads</span>
+                <span className="px-4 hover:text-red-300 ">FAQ's</span>
+                <button className="bg-red-400 font-bold rounded-xl hover:text-red-300 hover:border-red-300 hover:bg-white -translate-y-3 px-6 py-3">Login</button>
             </div>
 
         </div>
