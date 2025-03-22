@@ -32,3 +32,15 @@ delayedCall(function(){
     return 1;
 })
 
+interface UserType {
+    name: string,
+    age: number
+}
+
+function hello(user: UserType){
+    console.log("hello" + user.age)
+}
+hello({
+    name:"aadit",
+    age: 21
+})
