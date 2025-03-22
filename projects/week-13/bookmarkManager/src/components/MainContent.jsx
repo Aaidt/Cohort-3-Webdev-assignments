@@ -19,15 +19,13 @@ export const MainContent = () => {
                     )}
                 </div>
                 <div className="p-2">
-                    <button className="translate-x-28 bg-blue-700 hover:bg-white hover:text-black text-white text-bold text-xl rounded-lg p-3">Get it on Chrome</button>
-                    <button className="translate-x-28 bg-gray-400 text-white text-bold text-xl rounded-lg p-3">Get it on FireFox</button>
+                    <button className="translate-x-28 bg-blue-700 hover:bg-white hover:text-black text-white font-bold text-xl rounded-lg p-3">Get it on Chrome</button>
+                    <button className="translate-x-28 bg-gray-400 text-white font-bold text-xl rounded-lg p-3">Get it on FireFox</button>
                 </div>
 
             </div>
             <div>
-                <div className="bg-blue-700 rounded-full w-3xl h-64 translate-y-50 translate-x-64">
-
-                </div>
+                <div className="bg-blue-700 rounded-full w-3xl h-64 translate-y-50 translate-x-64"></div>
                 <img className="-translate-y-54 translate-x-32 w-lg" src="https://tailwindfromscratch.com/website-projects/bookmark/images/illustration-hero.svg" />
             </div>
         </div>
