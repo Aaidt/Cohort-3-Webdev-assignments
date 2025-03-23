@@ -3,6 +3,7 @@ import './index.css'
 import { Sidebar } from "./components/Sidebar"
 import { Card } from "./components/Card"
 import { Filter } from "./components/Filter"
+import { Problems } from "./components/Problems"
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
     <Sidebar />
     <Filter />
     <Card />
+    <Problems />
   </div>
 )}
 
