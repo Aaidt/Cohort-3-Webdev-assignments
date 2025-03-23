@@ -78,57 +78,86 @@
 
 // console.log(isLegal(user))  
 
-interface Person {
-    name: string,
-    age: number,
-    isLegal(): boolean
-    // greet: () => string
-}
+// interface Person {
+//     name: string,
+//     age: number,
+//     isLegal(): boolean
+//     // greet: () => string
+// }
 
-let people: Person = {
-    name: "adsd",
-    age: 23,
+// let people: Person = {
+//     name: "adsd",
+//     age: 23,
     
-    // greet: () => {
-    //     return "hi"
-    // }
-}
+//     // greet: () => {
+//     //     return "hi"
+//     // }
+// }
 // const ans = people.greet()  
 // console.log(ans)
 
-class Manager implements Person {
-    name: string;
-    age: number;
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-    isLegal(){
-        return this.age > 18
-    }
+// class Manager implements Person {
+//     name: string;
+//     age: number;
+//     constructor(name: string, age: number) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     isLegal(){
+//         return this.age > 18
+//     }
+// }
+
+// let user = new  Manager("John", 57);
+// console.log(user.isLegal())
+
+// abstract class User {
+//     name: string
+//     constructor(name: string) {
+//         this.name = name
+//     }
+//     abstract greet(): string
+//     hello(){
+//         console.log("hi there")
+//     }
+// }
+
+// class Employee extends User{
+//     name: string;
+//     constructor(name: string){
+//         super(name)
+//         this.name = name;
+//     }
+//     greet(){
+//         console.log("hi" + this.name)
+//     }
+// }
+
+
+type Employee = {
+    name: string,
+    startDate: number    
 }
 
-let user = new  Manager("John", 57);
-console.log(user.isLegal())
-
-abstract class User {
-    name: string
-    constructor(name: string) {
-        this.name = name
-    }
-    abstract greet(): string
-    hello(){
-        console.log("hi there")
-    }
+type Manager = {
+    name: string,
+    department: string
 }
 
-class Employee extends User{
-    name: string;
-    constructor(name: string){
-        super(name)
-        this.name = name;
-    }
-    greet(){
-        console.log("hi" + this.name)
-    }
+type TeamLead = Employee & Manager;
+
+let e: Employee = {
+    name: "adsfsd",
+    startDate: 43243243
+}
+
+let m: Manager = {
+    name: "sfasd",
+    department: "sfdfd"
+}
+
+let t: TeamLead = {
+    name: "fsdf",
+    startDate: 4234,
+    department: "das"
 }
