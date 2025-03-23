@@ -6,12 +6,18 @@ import { Filter } from "./components/Filter"
 import { Problems } from "./components/Problems"
 
 function App() {
+  const [filter, setFilter] = useState({
+    easy: false,
+    medium: false,
+    hard: false
+  })
+
   return (
   <div className="flex h-screen bg-black">
     <Sidebar />
-    <Filter />
+    <Filter filter={filter} setFilter={setFilter} />
     <Card />
-    <Problems />
+    <Problems filter={filter} />
   </div>
 )}
 
