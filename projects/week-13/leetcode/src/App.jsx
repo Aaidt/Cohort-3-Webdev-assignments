@@ -8,8 +8,8 @@ function App() {
   return (
   <div className="flex h-screen bg-black">
     <Sidebar />
-    <Card />
     <Filter />
+    <Card />
   </div>
 )}
 
