@@ -80,16 +80,55 @@
 
 interface Person {
     name: string,
-    age: number
-    greet: () => string
+    age: number,
+    isLegal(): boolean
+    // greet: () => string
 }
 
 let people: Person = {
     name: "adsd",
     age: 23,
-    greet: () => {
-        return "hi"
+    
+    // greet: () => {
+    //     return "hi"
+    // }
+}
+// const ans = people.greet()  
+// console.log(ans)
+
+class Manager implements Person {
+    name: string;
+    age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    isLegal(){
+        return this.age > 18
     }
 }
-const ans = people.greet()
-console.log(ans )
+
+let user = new  Manager("John", 57);
+console.log(user.isLegal())
+
+abstract class User {
+    name: string
+    constructor(name: string) {
+        this.name = name
+    }
+    abstract greet(): string
+    hello(){
+        console.log("hi there")
+    }
+}
+
+class Employee extends User{
+    name: string;
+    constructor(name: string){
+        super(name)
+        this.name = name;
+    }
+    greet(){
+        console.log("hi" + this.name)
+    }
+}
