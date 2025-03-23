@@ -2,12 +2,14 @@ import { useState } from 'react'
 import './index.css'
 import { Sidebar } from "./components/Sidebar"
 import { Card } from "./components/Card"
+import { Filter } from "./components/Filter"
 
 function App() {
   return (
   <div className="flex h-screen bg-black">
     <Sidebar />
     <Card />
+    <Filter />
   </div>
 )}
 
