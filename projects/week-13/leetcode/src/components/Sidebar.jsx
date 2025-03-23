@@ -3,7 +3,7 @@ import { useState } from "react";
 export const Sidebar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true)
     return (
-        <div>
+        <div className="md:flex grid col-span-3">
             {sidebarOpen ? (
                 <div className="w-2xs bg-gray-800 h-screen" >
                     <svg

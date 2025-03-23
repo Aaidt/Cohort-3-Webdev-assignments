@@ -13,7 +13,7 @@ function App() {
   })
 
   return (
-  <div className="flex h-screen bg-black">
+  <div className="md:flex grid cols-12 h-screen bg-black">
     <Sidebar />
     <Filter filter={filter} setFilter={setFilter} />
     <Card />

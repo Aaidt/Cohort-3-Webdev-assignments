@@ -1,37 +1,29 @@
 import { useState } from "react";
 
-export const Problems = () => {
-    const [easy, setEasy] = useState(true);
-    const [medium, setMedium] = useState(true);
-    const [hard, setHard] = useState(true);
+export const Problems = ({ filter }) => {
+    const questions = [
+        { id: "1", question: "solve this linked list problem.", difficulty: "easy" },
+        { id: "2", question: "solve this linked list problem.", difficulty: "medium" },
+        { id: "3", question: "solve this linked list problem.", difficulty: "easy" },
+        { id: "4", question: "solve this linked list problem.", difficulty: "hard" },
+        { id: "5", question: "solve this linked list problem.", difficulty: "easy" },
+        { id: "6", question: "solve this linked list problem.", difficulty: "medium" }
+    ]
+
+    const filteredQuestions = questions.filter(q => filter[q.difficulty])
 
     return (
-        <div className="flex flex-col gap-10">
-            <div id="easy" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q1. solve this linked list problem.</p>
-                <p>Easy</p>
-            </div>
-            <div id="medium" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q2. solve this linked list problem.</p>
-                <p>Medium</p>
-            </div>
-            <div id="easy" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q3. solve this linked list problem.</p>
-                <p>Easy</p>
-            </div>
-            <div id="hard" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q4. solve this linked list problem.</p>
-                <p>Hard</p>
-            </div>
-            <div id="easy" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q5. solve this linked list problem.</p>
-                <p>Easy</p>
-            </div>
-            <div id="medium" className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white translate-25">
-                <p>Q6. solve this linked list problem.</p>
-                <p>Medium</p>
-            </div>
-
+        <div className="md:flex md:flex-col grid col-span-3 gap-10 text-white">
+            {filteredQuestions.length > 0 ? (
+                filteredQuestions.map(q => (
+                    <div key={q.id} className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white">
+                        <p>{q.question}</p>
+                        <p className="capitalize">{q.difficulty}</p>
+                    </div>
+                ))
+            ) : (
+                <div>Please select a difficulty first.</div>
+            )}
         </div>
     )
 }
