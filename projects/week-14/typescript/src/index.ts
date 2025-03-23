@@ -144,7 +144,9 @@ type Manager = {
     department: string
 }
 
-type TeamLead = Employee & Manager;
+// type TeamLead = Employee & Manager;
+
+type TeamLead = Employee | Manager
 
 let e: Employee = {
     name: "adsfsd",
