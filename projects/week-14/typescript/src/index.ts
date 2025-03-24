@@ -176,15 +176,33 @@
 // const ans = sumOfAge({name: "aadit", age: 21}, {name: "smth", age:23});
 // console.log(ans)
 
-interface User {
-    name: string,
-    age: number,
-    email: string,
-    password: string
+// interface User {
+//     name: string,
+//     age: number,
+//     email: string,
+//     password: string
+// }
+
+// type updateProp = Pick<User, "name" | "age" | "password">
+
+// type updatePropPartial = Partial<updateProp>
+
+// function updateUser(updatedProps: updatePropPartial){
+//     console.log(`${updatedProps.age}`)  
+// }
+
+// updateUser({
+//     name: "aadit"
+// })
+
+type User = {
+    readonly name: string,
+    readonly age: number
 }
 
-type updateProp = Pick<User, "name" | "age" | "password">
-
-function updateUser(updatedProps: updateProp){
-    
+const user: User = {
+    name: "aadsa",
+    age: 23
 }
+
+user.age  = 45
