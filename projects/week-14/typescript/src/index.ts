@@ -207,18 +207,18 @@
 
 // user.age  = 45
 
-const User = {
-    "idd": {
-        name: "aasd",
-        age: 23
-    },
-    "idd2": {
-        name: "aasd",
-        age: 23
-    }
-}
+// const User = {
+//     "idd": {
+//         name: "aasd",
+//         age: 23
+//     },
+//     "idd2": {
+//         name: "aasd",
+//         age: 23
+//     }
+// }
 
-type Users = Record<string, {name: string, age: number}>
+// type Users = Record<string, {name: string, age: number}>
 
 // type User = {
 //     name: string,
@@ -228,3 +228,13 @@ type Users = Record<string, {name: string, age: number}>
 // type Users = {
 //     [key: string]: User
 // }
+
+const users = new Map<string, {name: string, age: number}>();
+users.set("user1", {
+    name: "adasd", age: 23
+});
+users.set("user2", {
+    name: "dgdf", age: 43
+})
+
+const user = users.get("user1");
