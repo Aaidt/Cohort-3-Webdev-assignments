@@ -88,7 +88,7 @@
 // let people: Person = {
 //     name: "adsd",
 //     age: 23,
-    
+
 //     // greet: () => {
 //     //     return "hi"
 //     // }
@@ -134,32 +134,57 @@
 // }
 
 
-type Employee = {
+// type Employee = {
+//     name: string,
+//     startDate: number    
+// }
+
+// type Manager = {
+//     name: string,
+//     department: string
+// }
+
+// // type TeamLead = Employee & Manager;
+
+// type TeamLead = Employee | Manager
+
+// let e: Employee = {
+//     name: "adsfsd",
+//     startDate: 43243243
+// }
+
+// let m: Manager = {
+//     name: "sfasd",
+//     department: "sfdfd"
+// }
+
+// let t: TeamLead = {
+//     name: "fsdf",
+//     startDate: 4234,
+//     department: "das"
+// }
+
+// interface User{
+//     name: string,
+//     age: number
+// }
+
+// function sumOfAge (user1: User, user2: User): number {
+//     return user1.age + user2.age
+// }
+
+// const ans = sumOfAge({name: "aadit", age: 21}, {name: "smth", age:23});
+// console.log(ans)
+
+interface User {
     name: string,
-    startDate: number    
+    age: number,
+    email: string,
+    password: string
 }
 
-type Manager = {
-    name: string,
-    department: string
-}
+type updateProp = Pick<User, "name" | "age" | "password">
 
-// type TeamLead = Employee & Manager;
-
-type TeamLead = Employee | Manager
-
-let e: Employee = {
-    name: "adsfsd",
-    startDate: 43243243
-}
-
-let m: Manager = {
-    name: "sfasd",
-    department: "sfdfd"
-}
-
-let t: TeamLead = {
-    name: "fsdf",
-    startDate: 4234,
-    department: "das"
+function updateUser(updatedProps: updateProp){
+    
 }
