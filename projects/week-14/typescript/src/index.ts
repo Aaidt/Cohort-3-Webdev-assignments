@@ -195,14 +195,36 @@
 //     name: "aadit"
 // })
 
-type User = {
-    readonly name: string,
-    readonly age: number
+// type User = {
+//     name: string,
+//     age: number
+// }
+
+// const user: Readonly<User> = {
+//     name: "aadsa",
+//     age: 23
+// }
+
+// user.age  = 45
+
+const User = {
+    "idd": {
+        name: "aasd",
+        age: 23
+    },
+    "idd2": {
+        name: "aasd",
+        age: 23
+    }
 }
 
-const user: User = {
-    name: "aadsa",
-    age: 23
-}
+type Users = Record<string, {name: string, age: number}>
 
-user.age  = 45
+// type User = {
+//     name: string,
+//     age: number
+// }
+
+// type Users = {
+//     [key: string]: User
+// }
