@@ -5,7 +5,7 @@ export const Sidebar = () => {
     return (
         <div className="md:flex grid col-span-3">
             {sidebarOpen ? (
-                <div className="w-2xs bg-gray-800 h-screen" >
+                <div className="w-3xs bg-[#323332] h-screen" >
                     <svg
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         id="icon"

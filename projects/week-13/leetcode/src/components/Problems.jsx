@@ -16,7 +16,7 @@ export const Problems = ({ filter }) => {
         <div className="md:flex md:flex-col grid col-span-3 gap-10 text-white">
             {filteredQuestions.length > 0 ? (
                 filteredQuestions.map(q => (
-                    <div key={q.id} className="flex justify-between p-2 w-110 h-10 bg-gray-700 rounded-lg text-white">
+                    <div key={q.id} className="flex justify-between p-2 w-110 h-10 bg-[#282929] rounded-lg text-white">
                         <p>{q.question}</p>
                         <p className="capitalize">{q.difficulty}</p>
                     </div>
