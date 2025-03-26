@@ -5,6 +5,7 @@ import { UserModel, ContentModel, LinkModel } from "./db/db"
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD, PORT } from "./config"
 import { userMiddleware } from "./middlewares/userMiddleware"
+import { random } from "./utils"
 
 app.use(express.json())
 app.use(cors())
@@ -90,10 +91,20 @@ app.delete("/api/v1/brain/content", userMiddleware, async (req, res) => {
 
 app.post("/api/v1/brain/share", async (req, res) => {
     const { share } = req.body;
-    await LinkModel.create({
-        userId: req.userId,
-    
-    }) 
+    if(share){
+        await LinkModel.create({
+            userId: req.userId,
+            hash: random(10)
+        })
+    }else{
+        await LinkModel.deleteOne({
+            userId: req.userId
+        })
+    }
+
+    res.json({
+        message: "updated shareable link."
+    })
 
 })
 
