@@ -1,25 +1,27 @@
 import express from "express";
 const app = express();
+import cors from "cors";
 import { UserModel, ContentModel, LinkModel } from "./db/db"
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD, PORT } from "./config"
 import { userMiddleware } from "./middlewares/userMiddleware"
 
 app.use(express.json())
+app.use(cors())
 
 app.post("/api/v1/brain/signup", async (req, res) => {
     // zod validation, password hashing 
     const { username, password } = req.body;
-    try{
+    try {
         await UserModel.create({
             username: username,
             password: password
         });
-    
+
         res.status(200).json({
             message: "You have successfully signed up."
         });
-    }catch(e){
+    } catch (e) {
         console.log(e);
     }
 })
@@ -38,7 +40,7 @@ app.post("/api/v1/brain/signin", async (req, res) => {
         res.json({
             token
         })
-    }else{
+    } else {
         res.status(403).json({
             message: "Incorrect credentials."
         })
@@ -46,8 +48,8 @@ app.post("/api/v1/brain/signin", async (req, res) => {
 })
 
 
-app.post("/api/v1/brain/content", userMiddleware,  async (req, res) => {
-    const { title, link, type } = req.body;   
+app.post("/api/v1/brain/content", userMiddleware, async (req, res) => {
+    const { title, link, type } = req.body;
     await ContentModel.create({
         title,
         link,
@@ -85,9 +87,17 @@ app.delete("/api/v1/brain/content", userMiddleware, async (req, res) => {
     })
 })
 
-// app.post("/api/v1/brain/share", async (req, res) => [
+
+app.post("/api/v1/brain/share", async (req, res) => {
+    const { share } = req.body;
+    await LinkModel.create({
+        userId: req.userId,
     
-// ])
+    }) 
+
+})
+
+
 app.listen(PORT, () => {
     console.log("Listening on port 3000.")
 })
