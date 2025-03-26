@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "./config"
 import { userMiddleware } from "./middlewares/userMiddleware"
 
-app.post("/api/v1/signup", async (req, res) => {
+app.post("/api/v1/brain/signup", async (req, res) => {
     // zod validation, password hashing 
     const { username, password } = req.body;
     try{
@@ -22,7 +22,7 @@ app.post("/api/v1/signup", async (req, res) => {
     }
 })
 
-app.post("/api/v1/signin", async (req, res) => {
+app.post("/api/v1/brain/signin", async (req, res) => {
     const { username, password } = req.body;
     const existingUser = await UserModel.findOne({
         username,
@@ -45,7 +45,7 @@ app.post("/api/v1/signin", async (req, res) => {
 
 app.use(userMiddleware);
 
-app.post("/api/v1/content", async (req, res) => {
+app.post("/api/v1/brain/content", async (req, res) => {
     const { title, link, type } = req.body;   
     await ContentModel.create({
         title,
@@ -61,15 +61,29 @@ app.post("/api/v1/content", async (req, res) => {
 })
 
 
-app.get("/api/v1/content", async (req, res) => {
+app.get("/api/v1/brain/content", async (req, res) => {
     const userId = req.userId;
     const content = await ContentModel.find({
         userId: userId
     }).populate("userId", "username");
 
-    res.json 
+    res.json({
+        content
+    })
 })
 
 
-app.post("/api/v1/links", async (req, res) => {
+app.delete("/api/v1/brain/content", async (req, res) => {
+    const contentId = req.body.contentId;
+    await ContentModel.deleteMany({
+        contentId,
+        userId: req.userId;
+    })
+    res.json({
+        message: 'content deleted sucessfully.'
+    })
 })
+
+app.post("/api/v1/brain/share", async (req, res) => [
+    
+])
