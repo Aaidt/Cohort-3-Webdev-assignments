@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 import { UserModel, ContentModel, LinkModel } from "./db/db"
 import jwt from "jsonwebtoken";
-import { JWT_PASSWORD } from "./config"
+import { JWT_PASSWORD, PORT } from "./config"
 import { userMiddleware } from "./middlewares/userMiddleware"
 
 app.use(express.json())
@@ -88,6 +88,6 @@ app.delete("/api/v1/brain/content", userMiddleware, async (req, res) => {
 // app.post("/api/v1/brain/share", async (req, res) => [
     
 // ])
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Listening on port 3000.")
 })
