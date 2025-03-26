@@ -15,7 +15,7 @@ const variantStyles = {
     "secondary": "bg-[#e0e6fe] text-[#574ebe]"
 }
 
-const defaultStyles = "flex rounded-md p-4 m-2"
+const fixedStyles = "flex rounded-md p-4 m-2 font-normal items-center"
 
 const sizeStyles = {
     "sm": "py-1 px-2",
@@ -23,9 +23,8 @@ const sizeStyles = {
     "lg": "py-4 px-6"
 }
 
-
 export const Button = (props: ButtonProps) => {
-    return <button className={`${variantStyles[props.variant]} ${defaultStyles} ${sizeStyles[props.size]} `}>
+    return <button className={`${variantStyles[props.variant]} ${fixedStyles} ${sizeStyles[props.size]} `}>
         {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null} {props.text} {props.endIcon}
     </button>
 }

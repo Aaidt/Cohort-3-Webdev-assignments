@@ -124,7 +124,7 @@ app.get("/api/v1/brain/:sharelink", userMiddleware, async (req, res) => {
     const hash = req.params.sharelink;
     if(!hash){
         res.json({
-            message: "sharelink is requried."
+            message: "link is requried."
         })
         return 
     }
