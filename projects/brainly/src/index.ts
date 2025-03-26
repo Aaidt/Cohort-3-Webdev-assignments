@@ -50,9 +50,8 @@ app.post("/api/v1/brain/signin", async (req, res) => {
 
 
 app.post("/api/v1/brain/content", userMiddleware, async (req, res) => {
-    const { title, link, type } = req.body;
+    const { link, type } = req.body;
     await ContentModel.create({
-        title,
         link,
         type,
         tags: [],
@@ -80,7 +79,7 @@ app.get("/api/v1/brain/content", userMiddleware, async (req, res) => {
 app.delete("/api/v1/brain/content", userMiddleware, async (req, res) => {
     const contentId = req.body.contentId;
     await ContentModel.deleteMany({
-        contentId,
+        _id: contentId,
         userId: req.userId
     })
     res.json({
@@ -89,33 +88,52 @@ app.delete("/api/v1/brain/content", userMiddleware, async (req, res) => {
 })
 
 
-app.post("/api/v1/brain/share", async (req, res) => {
-    const { share } = req.body;
-    if(share){
-        await LinkModel.create({
-            userId: req.userId,
-            hash: random(10)
+app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
+    const share = req.body.share;
+    const userId = req.userId
+    if (share) {
+        const hash = random(10)
+        const existingLink = await LinkModel.findOne({
+            userId: userId
         })
-    }else{
+        if(existingLink){
+            res.json({
+                hash: existingLink.hash
+            })
+            return
+        }
+        await LinkModel.create({
+            userId: userId,
+            hash
+        })
+        res.json({
+            hash
+        })
+    } else {
         await LinkModel.deleteOne({
-            userId: req.userId
+            userId: userId
+        })
+        res.json({
+            message: "removed link."
         })
     }
 
-    res.json({
-        message: "updated shareable link."
-    })
-
 })
 
-app.post("api/v1/brainly/:sharelink", userMiddleware, async (req, res) => {
+app.get("/api/v1/brain/:sharelink", userMiddleware, async (req, res) => {
     const hash = req.params.sharelink;
+    if(!hash){
+        res.json({
+            message: "sharelink is requried."
+        })
+        return 
+    }
 
     const link = await LinkModel.findOne({
         hash
     });
 
-    if(!link){
+    if (!link) {
         res.status(411).json({
             message: "Incorrect input."
         })
@@ -127,10 +145,10 @@ app.post("api/v1/brainly/:sharelink", userMiddleware, async (req, res) => {
     })
 
     const user = await UserModel.findOne({
-        userId: link.userId
+        _id: link.userId
     })
 
-    if(!user){
+    if (!user) {
         res.status(411).json({
             message: "user not found."
         })
