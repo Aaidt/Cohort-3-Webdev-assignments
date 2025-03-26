@@ -1,8 +1,9 @@
 import express from "express";
 const app = express();
-import { UserModel } from "./db/db"
+import { UserModel, ContentModel, LinkModel } from "./db/db"
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "./config"
+import { userMiddleware } from "./middlewares/userMiddleware"
 
 app.post("/api/v1/signup", async (req, res) => {
     // zod validation, password hashing 
@@ -42,12 +43,33 @@ app.post("/api/v1/signin", async (req, res) => {
     }
 })
 
-app.post("/api/v1/signup", async (req, res) => {
+app.use(userMiddleware);
+
+app.post("/api/v1/content", async (req, res) => {
+    const { title, link, type } = req.body;   
+    await ContentModel.create({
+        title,
+        link,
+        type,
+        tags: [],
+        userId: req.userId
+    });
+
+    res.json({
+        message: "content added."
+    })
 })
 
 
-app.post("/api/v1/signup", async (req, res) => {
+app.get("/api/v1/content", async (req, res) => {
+    const userId = req.userId;
+    const content = await ContentModel.find({
+        userId: userId
+    }).populate("userId", "username");
+
+    res.json 
 })
 
-app.post("/api/v1/signup", async (req, res) => {
+
+app.post("/api/v1/links", async (req, res) => {
 })
