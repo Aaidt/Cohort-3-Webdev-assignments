@@ -1,16 +1,18 @@
+import { ReactElement } from "react"
+
 
 interface ButtonProps {
     variant: "primary" | "secondary";
     size: "sm" | "md" | "lg";
     text: string;
-    startIcon?: any,
-    endIcon?: any,
+    startIcon?: ReactElement,
+    endIcon?: ReactElement,
     onClick: () => void;
 }
 
 const variantStyles = {
     "primary": "bg-[#5047e5] text-white",
-    "secondary": "bg-[#e0e6fe] text-[#574ebe]" 
+    "secondary": "bg-[#e0e6fe] text-[#574ebe]"
 }
 
 const defaultStyles = "flex rounded-md p-4 m-2"
