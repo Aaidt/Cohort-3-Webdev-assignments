@@ -108,6 +108,41 @@ app.post("/api/v1/brain/share", async (req, res) => {
 
 })
 
+app.post("api/v1/brainly/:sharelink", userMiddleware, async (req, res) => {
+    const hash = req.params.sharelink;
+
+    const link = await LinkModel.findOne({
+        hash
+    });
+
+    if(!link){
+        res.status(411).json({
+            message: "Incorrect input."
+        })
+        return;
+    }
+
+    const content = await ContentModel.find({
+        userId: link.userId
+    })
+
+    const user = await UserModel.findOne({
+        userId: link.userId
+    })
+
+    if(!user){
+        res.status(411).json({
+            message: "user not found."
+        })
+        return;
+    }
+
+    res.json({
+        username: user.username,
+        content: content
+    })
+})
+
 
 app.listen(PORT, () => {
     console.log("Listening on port 3000.")
