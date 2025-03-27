@@ -58,8 +58,9 @@ app.post("/api/v1/brain/signin", async (req, res) => {
 
 
 app.post("/api/v1/brain/content", userMiddleware, async (req, res) => {
-    const { link, type } = req.body;
+    const { title, link, type } = req.body;
     await ContentModel.create({
+        title,
         link,
         type,
         tags: [],

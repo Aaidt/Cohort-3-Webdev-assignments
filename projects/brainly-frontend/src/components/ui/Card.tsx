@@ -29,7 +29,7 @@ export const Card = ({ title, type, link }: CardProps) => {
                 </div>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 min-h-24">
                 {type === "youtube" && <iframe
                     className="w-full"
                     src={link.replace("watch", "embed")}
