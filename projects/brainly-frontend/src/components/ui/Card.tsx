@@ -1,4 +1,6 @@
 import { ShareIcon } from "../icons/ShareIcon"
+import { Delete } from "../icons/Delete"
+import { Page } from "../icons/Page"
 
 
 interface CardProps {
@@ -11,21 +13,19 @@ export const Card = ({ title, type, link }: CardProps) => {
     return <>
         <div className="bg-white rounded-md p-4 border-gray-300 max-w-72 min-h-48 border shadow-lg">
             <div className="flex justify-between">
-                <div className="flex items-center">
+                <div className="flex items-center text-xl">
                     <div className="text-gray-500 pr-2">
-                        <a href={link} target="_blank">
-                            <ShareIcon size="md" />
-                        </a>
+                        <Page />
                     </div>
                     {title}
                 </div>
-                <div className="flex text-gray-500">
+                <div className="flex text-gray-500 items-center px-4">
                     <div className="pr-2 ">
-                        <ShareIcon size="md" />
+                        <Delete />
                     </div>
-                    <div>
+                    <a href={link} target="_blank">
                         <ShareIcon size="md" />
-                    </div>
+                    </a>
                 </div>
             </div>
 

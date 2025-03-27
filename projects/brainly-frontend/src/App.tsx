@@ -17,13 +17,13 @@ function App() {
       </div>
       <div className="p-4 ml-72 min-h-screen">
         <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)} />
-        <div className="flex justify-end gap-4">
+        <div className="flex justify-end gap-4 p-5 -translate-10 translate-x-20">
           <Button onClick={() => setModalOpen(true)} startIcon={<PlusIcon size={"lg"} />} variant="primary" text="Add content" size="md" />
           <Button onClick={() => { }} startIcon={<ShareIcon size={"md"} />} variant="secondary" text="Share brain" size="md" />
         </div>
         <div className="flex gap-5">
-          <Card type="youtube" title="yt ideas" link="https://www.youtube.com/embed/ezuyuoP5OI8?si=bQCu8wfe-QWJiRvg" />
-          <Card type="twitter" title="tweet ideas" link="https://x.com/danghentschel/status/1905082439204253775" />
+          <Card type="youtube" title="YT ideas" link="https://www.youtube.com/embed/ezuyuoP5OI8?si=bQCu8wfe-QWJiRvg" />
+          <Card type="twitter" title="Tweet ideas" link="https://x.com/danghentschel/status/1905082439204253775" />
         </div>
       </div>
     </div>
