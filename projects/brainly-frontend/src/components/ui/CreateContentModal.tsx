@@ -21,7 +21,7 @@ export const CreateContentModal = ({ open, onClose }: {
                         <Input placeholder="Link" onChange={() => { }} />
                     </div>
                     <div className="flex justify-center">
-                        <Button variant="primary" size="md" text="Submit" onClick={() => { }} />
+                        <Button variant="primary" size="md" text="Submit" onClick={() => { }} fullWidth={false} />
                     </div>
                 </span>
             </div>
