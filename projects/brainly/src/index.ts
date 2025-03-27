@@ -29,6 +29,14 @@ app.post("/api/v1/brain/signup", async (req, res) => {
 
 app.post("/api/v1/brain/signin", async (req, res) => {
     const { username, password } = req.body;
+    try{
+
+    }catch(err){
+        console.log(`Error while signing in. ${err}`)
+        res.status(500).json({
+            message: "Internal server error"
+        })
+    }
     const existingUser = await UserModel.findOne({
         username,
         password

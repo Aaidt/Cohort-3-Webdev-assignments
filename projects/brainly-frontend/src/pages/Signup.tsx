@@ -3,12 +3,14 @@ import { Button } from "../components/ui/Button"
 import { useRef } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config"
+import { useNavigate } from "react-router-dom"
 
 export const Signup = () => {
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-
+    const navigate = useNavigate()
     const signup = async () => {
+        
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
         await axios.post(`${BACKEND_URL}/api/v1/brain/signup`, {
@@ -16,6 +18,7 @@ export const Signup = () => {
             password
         });
         alert("You have signed up successfully.")
+        navigate("/signin");
     }
 
     return <div className="h-screen w-full bg-gray-200 flex rounded justify-center items-center">
