@@ -6,6 +6,8 @@ import { Card } from "./components/ui/Card"
 import { CreateContentModal } from "./components/ui/CreateContentModal"
 import { SideBar } from "./components/ui/SideBar"
 import { useState } from "react";
+import {YoutubeIcon} from "../icons/YoutubeIcon"
+import {TwitterIcon} from "../icons/TwitterIcon"
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
