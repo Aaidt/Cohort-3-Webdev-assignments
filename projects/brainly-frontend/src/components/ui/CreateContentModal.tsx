@@ -1,7 +1,10 @@
 import { Button } from "./Button"
 import { CrossIcon } from "../icons/CrossIcon";
 
-export const CreateContentModal = ({ open, onClose }) => {
+export const CreateContentModal = ({ open, onClose }: {
+    open: Boolean,
+    onClose: () => void
+}) => {
     return <div>
         {open && <div className="bg-black fixed top-0 left-0 h-screen w-screen opacity-60 flex justify-center">
             <div className="flex flex-col justify-center">
@@ -25,7 +28,10 @@ export const CreateContentModal = ({ open, onClose }) => {
     </div>
 
 }
-const Input = ({ onChange, placeholder }) => {
+const Input = ({ onChange, placeholder }: {
+    onChange: () => void,
+    placeholder: string
+}) => {
     return <div>
         <input
             className="py-2 border rounded-lg m-2 px-8" id="title"
