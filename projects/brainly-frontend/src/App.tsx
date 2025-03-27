@@ -12,7 +12,7 @@ function App() {
     <div className="p-4">
       <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)} />
       <div className="flex justify-end gap-4">
-        <Button onClick={() => { }} startIcon={<PlusIcon size={"lg"} />} variant="primary" text="Add content" size="md" />
+        <Button onClick={() => setModalOpen(true)} startIcon={<PlusIcon size={"lg"} />} variant="primary" text="Add content" size="md" />
         <Button onClick={() => { }} startIcon={<ShareIcon size={"md"} />} variant="secondary" text="Share brain" size="md" />
       </div>
       <div className="flex gap-5">

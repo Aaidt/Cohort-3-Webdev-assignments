@@ -7,7 +7,7 @@ interface ButtonProps {
     text: string;
     startIcon?: ReactElement,
     endIcon?: ReactElement,
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const variantStyles = {
@@ -24,7 +24,7 @@ const sizeStyles = {
 }
 
 export const Button = (props: ButtonProps) => {
-    return <button className={`${variantStyles[props.variant]} ${fixedStyles} ${sizeStyles[props.size]} `}>
+    return <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${fixedStyles} ${sizeStyles[props.size]} `}>
         {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null} {props.text} {props.endIcon}
     </button>
 }

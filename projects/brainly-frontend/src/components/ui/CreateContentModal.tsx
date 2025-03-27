@@ -6,8 +6,10 @@ export const CreateContentModal = ({ open, onClose }) => {
         {open && <div className="bg-black fixed top-0 left-0 h-screen w-screen opacity-60 flex justify-center">
             <div className="flex flex-col justify-center">
                 <span className="bg-white opacity-100 p-4 rounded-md">
-                    <div className="flex justify-end" onClick={onClose}>
-                        <CrossIcon />
+                    <div>
+                        <span className="flex justify-end cursor-pointer" onClick={onClose}>
+                            <CrossIcon />
+                        </span>
                     </div>
                     <div className="flex flex-col p-4">
                         <Input placeholder="Title" onChange={() => { }} />
