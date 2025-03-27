@@ -1,7 +1,7 @@
 
 
-export const Input = ({ onChange, placeholder }: {
-    onChange?: () => void,
+export const Input = ({ ref, placeholder }: {
+    ref?: any,
     placeholder: string
 }) => {
     return <div>
@@ -9,7 +9,7 @@ export const Input = ({ onChange, placeholder }: {
             className="py-2 border rounded-lg m-2 px-8" id="title"
             type="text"
             placeholder={placeholder}
-            onChange={() => { }}>
+            ref={ref}>
         </input>
     </div>
 }

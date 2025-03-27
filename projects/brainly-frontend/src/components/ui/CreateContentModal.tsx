@@ -16,9 +16,9 @@ export const CreateContentModal = ({ open, onClose }: {
                         </span>
                     </div>
                     <div className="flex flex-col p-4">
-                        <Input placeholder="Title" onChange={() => { }} />
-                        <Input placeholder="Type" onChange={() => { }} />
-                        <Input placeholder="Link" onChange={() => { }} />
+                        <Input placeholder="Title" />
+                        <Input placeholder="Type" />
+                        <Input placeholder="Link" />
                     </div>
                     <div className="flex justify-center">
                         <Button variant="primary" size="md" text="Submit" onClick={() => { }} fullWidth={false} />
